@@ -1,0 +1,774 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-25",
+  "categories": [
+    {
+      "name": "日常生产力",
+      "id": "productivity",
+      "skills": [
+        {
+          "name": "google-workspace",
+          "source": "builtin",
+          "description": "Gmail / Calendar / Drive 全家桶，读邮件、查日程、找文件",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "Gmail 邮件读写、Google Calendar 日程管理、Google Drive 文件搜索。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "apple-reminders",
+          "source": "builtin",
+          "description": "直接加到 iPhone 提醒事项",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "操作 macOS/iOS 提醒事项 app，支持创建、查询、完成提醒。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "apple-notes",
+          "source": "builtin",
+          "description": "聊天内容整理成笔记，存到苹果备忘录",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "读写 macOS 备忘录 app。需要提到「苹果备忘录」或「Apple Notes」才会触发。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "nano-pdf",
+          "source": "builtin",
+          "description": "一句话生成 PDF 文件",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "支持 Markdown 语法，自动排版成 PDF。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "powerpoint",
+          "source": "builtin",
+          "description": "生成 PPT 演示文稿",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "自动生成 PowerPoint 演示文稿，输出 .pptx 文件。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "notion",
+          "source": "builtin",
+          "description": "读写 Notion 页面和数据库",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "通过 Notion API 读写页面和数据库。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "find-nearby",
+          "source": "builtin",
+          "description": "附近有什么咖啡店 → OpenStreetMap 免费查",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "基于 OpenStreetMap 查找附近的餐厅、咖啡店等。零 API key。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "obsidian",
+          "source": "builtin",
+          "description": "读写 Obsidian 笔记库",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "搜索、创建、编辑 Obsidian 笔记。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "siyuan",
+          "source": "hub",
+          "description": "思源笔记 API 集成（国产笔记软件）",
+          "install": "hermes skills install siyuan",
+          "repo": "",
+          "detail": "国产本地优先笔记软件集成。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "hermes-life-os",
+          "source": "community",
+          "description": "个人生活 OS — 检测日常模式、学习习惯",
+          "install": "git clone https://github.com/Lethe044/hermes-life-os.git ~/.hermes/skills/hermes-life-os",
+          "repo": "https://github.com/Lethe044/hermes-life-os",
+          "detail": "把 Hermes 变成你的个人生活操作系统。自动检测日常模式、学习习惯偏好。需 OPENROUTER_API_KEY。",
+          "stars": "45",
+          "isNew": true
+        },
+        {
+          "name": "personal-api",
+          "source": "community",
+          "description": "把 Obsidian 笔记库变成 Agent 可读的身份层",
+          "install": "git clone https://github.com/beiyuii/personal-api-skill.git ~/.hermes/skills/personal-api",
+          "repo": "https://github.com/beiyuii/personal-api-skill",
+          "detail": "生成 ME.md 和 AGENT.md，让 AI 30 秒内理解你是谁。纯 Markdown，兼容任何 AI 工具。",
+          "stars": "3",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "name": "搜索与研究",
+      "id": "search",
+      "skills": [
+        {
+          "name": "duckduckgo-search",
+          "source": "hub",
+          "description": "免费搜索引擎，文字/新闻/图片",
+          "install": "hermes skills install duckduckgo-search",
+          "repo": "",
+          "detail": "零配置免费搜索。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "arxiv",
+          "source": "builtin",
+          "description": "搜学术论文，零配置零依赖",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "搜索 arXiv 学术论文。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "llm-wiki",
+          "source": "builtin",
+          "description": "Karpathy 式知识库 — 把任何话题整理成 wiki",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "自动建立知识点之间的交叉引用。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "sherlock",
+          "source": "hub",
+          "description": "跨 400+ 社交平台搜用户名（OSINT）",
+          "install": "hermes skills install sherlock",
+          "repo": "https://github.com/sherlock-project/sherlock",
+          "detail": "OSINT 经典工具。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "hermes-web-search-plus",
+          "source": "community",
+          "description": "多搜索引擎智能路由（Serper/Tavily/Exa/Perplexity）",
+          "install": "git clone https://github.com/robbyczgw-cla/hermes-web-search-plus.git ~/.hermes/plugins/web-search-plus",
+          "repo": "https://github.com/robbyczgw-cla/hermes-web-search-plus",
+          "detail": "多搜索引擎智能路由，支持 Serper、Tavily、Exa、Querit、Perplexity。",
+          "stars": "67",
+          "isNew": true
+        },
+        {
+          "name": "scrapling",
+          "source": "hub",
+          "description": "网页爬虫，抓取任意网页内容",
+          "install": "hermes skills install scrapling",
+          "repo": "",
+          "detail": "智能网页爬虫，自动处理 JS 渲染。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "blogwatcher",
+          "source": "builtin",
+          "description": "监控博客/网站更新",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "支持 RSS 和网页抓取。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "记忆与上下文",
+      "id": "memory",
+      "skills": [
+        {
+          "name": "honcho",
+          "source": "hub",
+          "description": "跨会话记忆库 — Python/JS SDK，2.9K 星",
+          "install": "pip install honcho-ai",
+          "repo": "https://github.com/plastic-labs/honcho",
+          "detail": "通用 Agent 记忆 SDK，支持跨会话持久化。可自托管。",
+          "stars": "2.9K",
+          "isNew": false
+        },
+        {
+          "name": "plur",
+          "source": "community",
+          "description": "跨平台共享记忆 — Claude Code/Cursor/Hermes 通用",
+          "install": "npx @plur-ai/mcp init",
+          "repo": "https://github.com/plur-ai/plur",
+          "detail": "AI Agent 共享记忆层。修正、偏好、惯例跨会话和工具持久化。YAML 本地存储。BM25 + 嵌入混合搜索。",
+          "stars": "48",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "name": "写作与内容",
+      "id": "writing",
+      "skills": [
+        {
+          "name": "avoid-ai-writing",
+          "source": "community",
+          "description": "去除 AI 写作痕迹，让文章像人写的",
+          "install": "git clone https://github.com/conorbronsdon/avoid-ai-writing ~/.claude/skills/avoid-ai-writing",
+          "repo": "https://github.com/conorbronsdon/avoid-ai-writing",
+          "detail": "审查并重写内容，消除 AI 写作痕迹。支持仅检测模式。",
+          "stars": "1.2K",
+          "isNew": false
+        },
+        {
+          "name": "litprog-skill",
+          "source": "community",
+          "description": "文学编程 — 代码和文档编织在一起",
+          "install": "git clone https://github.com/tlehman/litprog-skill.git && cp SKILL.md your-project/.claude/skills/",
+          "repo": "https://github.com/tlehman/litprog-skill",
+          "detail": "Knuth 文学编程理念。含 PostToolUse hook 自动反向同步。需 Pandoc。",
+          "stars": "104",
+          "isNew": false
+        },
+        {
+          "name": "autonovel",
+          "source": "official",
+          "description": "自主小说写作流水线",
+          "install": "hermes skills install autonovel",
+          "repo": "",
+          "detail": "从大纲到章节到完整小说。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "任务编排",
+      "id": "automation",
+      "skills": [
+        {
+          "name": "hermes-skill-factory",
+          "source": "community",
+          "description": "观察工作流，自动生成新 Skill",
+          "install": "git clone https://github.com/Romanescu11/hermes-skill-factory.git && cd hermes-skill-factory && bash install.sh",
+          "repo": "https://github.com/Romanescu11/hermes-skill-factory",
+          "detail": "Meta-Skill — AI 观察你的工作流，自动生成 SKILL.md 和 plugin.py。需 Hermes v2026.3+。",
+          "stars": "152",
+          "isNew": false
+        },
+        {
+          "name": "maestro",
+          "source": "community",
+          "description": "跨 Agent 编排 — 支持 Claude Code/Codex/Gemini CLI",
+          "install": "curl -fsSL https://raw.githubusercontent.com/ReinaMacCredy/maestro/main/scripts/install.sh | bash",
+          "repo": "https://github.com/ReinaMacCredy/maestro",
+          "detail": "Conductor 模式：结构化记忆、任务交接、计划-审批-执行协调。",
+          "stars": "92",
+          "isNew": false
+        },
+        {
+          "name": "execplan-skill",
+          "source": "community",
+          "description": "复杂长任务自主执行 — 支持 6 种 Agent 平台",
+          "install": "放入 .skills/ 目录（agentskills.io 格式）",
+          "repo": "https://github.com/tiann/execplan-skill",
+          "detail": "让 AI 自主处理复杂的长期实现任务。支持 Claude Code / Cursor / OpenCode / Amp / Goose / VS Code。",
+          "stars": "31",
+          "isNew": true
+        },
+        {
+          "name": "hermes-dojo",
+          "source": "community",
+          "description": "自我改进系统 — 读 session log 找弱点自我进化",
+          "install": "git clone https://github.com/Yonkoo11/hermes-dojo.git && cd hermes-dojo && ./install.sh",
+          "repo": "https://github.com/Yonkoo11/hermes-dojo",
+          "detail": "监控性能，发现弱 skill，用 GEPA 自进化修复，汇报结果。读 state.db 的 session log。",
+          "stars": "26",
+          "isNew": true
+        },
+        {
+          "name": "super-hermes",
+          "source": "community",
+          "description": "教 Hermes 写分析 prompt（认知棱镜）",
+          "install": "git clone https://github.com/Cranot/super-hermes.git && cd super-hermes && bash install.sh",
+          "repo": "https://github.com/Cranot/super-hermes",
+          "detail": "7 个预制分析棱镜，可独立使用。汇报发现和盲区。Windows PowerShell 安装器可用。",
+          "stars": "45",
+          "isNew": true
+        },
+        {
+          "name": "SkillClaw",
+          "source": "community",
+          "description": "Skill 进化与去重",
+          "install": "hermes skills install skillclaw --force",
+          "repo": "",
+          "detail": "自动合并相似 Skill，淘汰低质量的。",
+          "stars": "705",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "创意可视化",
+      "id": "creative",
+      "skills": [
+        {
+          "name": "excalidraw",
+          "source": "builtin",
+          "description": "一句话生成手绘风格图表",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "输出 Excalidraw 格式文件。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "drawio-skill",
+          "source": "community",
+          "description": "自然语言生成 Draw.io 图表，导出 PNG/SVG/PDF",
+          "install": "git clone https://github.com/Agents365-ai/drawio-skill.git ~/.claude/skills/drawio-skill",
+          "repo": "https://github.com/Agents365-ai/drawio-skill",
+          "detail": "从文字到专业图表。支持 Claude Code / OpenCode / OpenClaw / Hermes。v1.4 支持自定义输出目录。",
+          "stars": "527",
+          "isNew": false
+        },
+        {
+          "name": "manim-video",
+          "source": "builtin",
+          "description": "3Blue1Brown 风格数学动画",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "可视化公式推导、几何变换。输出 MP4。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "p5js",
+          "source": "builtin",
+          "description": "p5.js 创意编程/互动动画",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "输出 HTML 在浏览器运行。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "flux-skills",
+          "source": "community",
+          "description": "Black Forest Labs 官方 FLUX 图片生成指南",
+          "install": "npx skills add black-forest-labs/skills",
+          "repo": "https://github.com/black-forest-labs/skills",
+          "detail": "FLUX 模型提示词最佳实践 + API 集成模式。agentskills.io 标准。",
+          "stars": "51",
+          "isNew": true
+        },
+        {
+          "name": "blender-mcp",
+          "source": "hub",
+          "description": "通过 Hermes 控制 Blender 3D 建模",
+          "install": "hermes skills install blender-mcp",
+          "repo": "",
+          "detail": "用自然语言操作 3D 场景。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "stable-diffusion",
+          "source": "hub",
+          "description": "Stable Diffusion 文生图",
+          "install": "hermes skills install stable-diffusion",
+          "repo": "",
+          "detail": "本地或远程生成图片。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "pixel-art",
+          "source": "builtin",
+          "description": "生成像素画",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "像素风格图画生成。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "AI Agent 联动",
+      "id": "agents",
+      "skills": [
+        {
+          "name": "claude-code",
+          "source": "builtin",
+          "description": "调用 Claude Code 帮你写代码",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "Hermes 当 PM，Claude Code 当码农。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "hermes-agent",
+          "source": "builtin",
+          "description": "Hermes 套娃 — 启动子 Hermes 执行子任务",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "主 Hermes 当 PM，子 Hermes 当 worker。支持并行子任务。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "evey-bridge",
+          "source": "community",
+          "description": "Claude Code ↔ Hermes 桥接（Mother Mode 循环）",
+          "install": "需自定义配置，详见 GitHub",
+          "repo": "https://github.com/42-evey/evey-bridge-plugin",
+          "detail": "Claude Code 插件，桥接 Evey/Hermes 实例。自动检查消息、Mother Mode 循环、快速状态。",
+          "stars": "7",
+          "isNew": true
+        },
+        {
+          "name": "native-mcp",
+          "source": "builtin",
+          "description": "接入 MCP 协议（Claude Code 同款）",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "支持所有 MCP 兼容的工具服务器。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "colony-skill",
+          "source": "community",
+          "description": "The Colony — AI Agent 论坛集成",
+          "install": "cd ~/.hermes/skills && git clone https://github.com/TheColonyCC/colony-skill.git the-colony",
+          "repo": "https://github.com/TheColonyCC/colony-skill",
+          "detail": "Agent 论坛 thecolony.cc 集成。支持 Hermes / OpenClaw / agentskills.io。",
+          "stars": "",
+          "isNew": true
+        },
+        {
+          "name": "Agentic-MCP",
+          "source": "community",
+          "description": "渐进式 MCP 客户端 — 三层懒加载省 token",
+          "install": "npm install -g @cablate/agentic-mcp",
+          "repo": "https://github.com/cablate/Agentic-MCP-Skill",
+          "detail": "AgentSkills.io 模式的 MCP 服务器管理。免预装、免全量加载。",
+          "stars": "25",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "name": "开发者工具",
+      "id": "developer",
+      "skills": [
+        {
+          "name": "github-issues",
+          "source": "builtin",
+          "description": "管理 GitHub Issue",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "创建、查看、评论、关闭 Issue。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "github-pr-workflow",
+          "source": "builtin",
+          "description": "GitHub PR 工作流",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "创建、审查、合并 PR。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "systematic-debugging",
+          "source": "builtin",
+          "description": "系统化 debug 框架",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "按步骤分析 bug、定位原因。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "docker-management",
+          "source": "hub",
+          "description": "Docker 容器/镜像/网络管理",
+          "install": "hermes skills install docker-management",
+          "repo": "",
+          "detail": "一句话起容器。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "rtk-hermes",
+          "source": "community",
+          "description": "终端输出压缩 60-90%，大幅省 token",
+          "install": "brew install rtk && pip install rtk-hermes",
+          "repo": "https://github.com/ogallotti/rtk-hermes",
+          "detail": "拦截 shell 命令输出并压缩。通过 pre_tool_call hook 自动注册。支持 30+ 命令（git/grep/find/ls/cargo 等）。",
+          "stars": "18",
+          "isNew": false
+        },
+        {
+          "name": "incident-commander",
+          "source": "community",
+          "description": "自主 SRE — 生产事故自动检测 + 自愈 + 学习",
+          "install": "git clone https://github.com/Lethe044/hermes-incident-commander.git && cp -r hermes-incident-commander/skills/incident-commander ~/.hermes/skills/",
+          "repo": "https://github.com/Lethe044/hermes-incident-commander",
+          "detail": "用 Memory/Skills/Cron/Gateway/Subagents/Atropos RL 全套。每次事故后自动在 ~/.hermes/skills/ 创建预防 skill。",
+          "stars": "17",
+          "isNew": true
+        },
+        {
+          "name": "hermes-cloudflare",
+          "source": "community",
+          "description": "Cloudflare 浏览器渲染，云端爬取网页",
+          "install": "curl -sSL https://raw.githubusercontent.com/raulvidis/hermes-cloudflare/main/install.sh | bash",
+          "repo": "https://github.com/raulvidis/hermes-cloudflare",
+          "detail": "不依赖本地浏览器，通过 Cloudflare Browser Rendering 爬取、提取网页内容。需 hermes-agent v0.3.0+。",
+          "stars": "6",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "name": "通讯社交",
+      "id": "comm",
+      "skills": [
+        {
+          "name": "himalaya",
+          "source": "builtin",
+          "description": "终端邮件客户端，读写邮件",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "命令行收发邮件，支持 IMAP/SMTP。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "imessage",
+          "source": "builtin",
+          "description": "收发 iMessage",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "需 macOS + 登录同一 Apple ID。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "telephony",
+          "source": "hub",
+          "description": "让 Hermes 打电话",
+          "install": "hermes skills install telephony",
+          "repo": "",
+          "detail": "语音通话能力。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "hermes-spotify",
+          "source": "community",
+          "description": "控制 Spotify 播放（Linux/树莓派专属）",
+          "install": "git clone https://github.com/Alexeyisme/hermes-spotify-skill.git /tmp/hermes-spotify-skill && mkdir -p ~/.hermes/skills/spotify && cp /tmp/hermes-spotify-skill/{SKILL.md,auth.py} ~/.hermes/skills/spotify/",
+          "repo": "https://github.com/Alexeyisme/hermes-spotify-skill",
+          "detail": "搜索、播放、暂停、跳过、音量、设备切换。Linux 专属（社区已有两个 macOS 版）。用 spotipy + execute_code 模式。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "xitter",
+          "source": "builtin",
+          "description": "发推特/X",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "发帖到 X/Twitter。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "安全红队",
+      "id": "security",
+      "skills": [
+        {
+          "name": "godmode",
+          "source": "builtin",
+          "description": "红队测试工具链 — Hermes 独有开放哲学",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "不限制安全研究能力。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "Cybersecurity-Skills",
+          "source": "community",
+          "description": "754 个网安技能，对标 MITRE ATT&CK 等 5 大框架",
+          "install": "npx skills add mukul975/Anthropic-Cybersecurity-Skills",
+          "repo": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+          "detail": "26 个安全领域全覆盖。支持 Claude Code / GitHub Copilot / Codex / Cursor / Gemini CLI 等 20+ 平台。Apache 2.0。",
+          "stars": "5.7K",
+          "isNew": false
+        },
+        {
+          "name": "security-auditor",
+          "source": "community",
+          "description": "安全审计 + 自动修复",
+          "install": "hermes skills install security-auditor --force",
+          "repo": "",
+          "detail": "扫描代码安全漏洞。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "娱乐游戏",
+      "id": "fun",
+      "skills": [
+        {
+          "name": "pokemon-player",
+          "source": "builtin",
+          "description": "让 AI 打宝可梦",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "Hermes 自主操作模拟器打游戏。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "minecraft-modpack",
+          "source": "builtin",
+          "description": "搭建 Minecraft 模组服务器",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "自动配置 Forge/Fabric + 模组。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "mbti-personality",
+          "source": "builtin",
+          "description": "切换 MBTI 人格 — 32 种组合随心换",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "一句话切换 Hermes 人格。4 个预设 + 16 种 MBTI + 32 种自定义组合。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "meme-generation",
+          "source": "hub",
+          "description": "选模板自动生成表情包",
+          "install": "hermes skills install meme-generation",
+          "repo": "",
+          "detail": "经典 meme 模板。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "openhue",
+          "source": "builtin",
+          "description": "控制飞利浦 Hue 智能灯",
+          "install": "内置 Skill，无需安装",
+          "repo": "",
+          "detail": "调颜色、亮度、场景。",
+          "stars": "",
+          "isNew": false
+        }
+      ]
+    },
+    {
+      "name": "工作区 GUI",
+      "id": "gui",
+      "skills": [
+        {
+          "name": "mission-control",
+          "source": "community",
+          "description": "Agent 舰队编排平台",
+          "install": "详见 GitHub README",
+          "repo": "",
+          "detail": "同时管理多个 Agent 实例。",
+          "stars": "3.7K",
+          "isNew": false
+        },
+        {
+          "name": "portable-hermes",
+          "source": "community",
+          "description": "Windows 桌面版（100+ 工具打包）",
+          "install": "详见 GitHub 下载",
+          "repo": "",
+          "detail": "解压即用，不需要 WSL。",
+          "stars": "",
+          "isNew": false
+        },
+        {
+          "name": "agent-analytics",
+          "source": "community",
+          "description": "Signals 分析仪表盘，多项目统计",
+          "install": "mkdir -p ~/.hermes/plugins && ln -s $(pwd) ~/.hermes/plugins/agent-analytics",
+          "repo": "https://github.com/Agent-Analytics/agent-analytics-hermes-plugin",
+          "detail": "Hermes web dashboard 的 Signals 标签页。token 消耗和使用趋势。",
+          "stars": "",
+          "isNew": true
+        }
+      ]
+    },
+    {
+      "name": "奇思妙想CYC",
+      "id": "cyc",
+      "skills": [
+        {
+          "name": "loci",
+          "source": "cyc",
+          "description": "AI 记忆宫殿 — 让 Agent 拥有跨项目、跨会话的长期记忆",
+          "install": "curl -fsSL https://raw.githubusercontent.com/codesstar/loci/main/install.sh | bash",
+          "repo": "https://github.com/codesstar/loci",
+          "detail": "给 Claude Code / Hermes 装一个持久化大脑。记忆存本地 Markdown，100% 隐私，支持跨项目同步、每日简报、模式检测。Git 原生版本追踪。",
+          "stars": "4",
+          "isNew": true
+        },
+        {
+          "name": "mbti-personality",
+          "source": "cyc",
+          "description": "一句话切换 AI 人格 — 32 种 MBTI 组合随心换",
+          "install": "claude install-skill https://github.com/codesstar/mbti-personality",
+          "repo": "https://github.com/codesstar/mbti-personality",
+          "detail": "4 个预设人格 + 全部 16 种 MBTI + 32 种自定义组合。改变思维方式、沟通风格、工作节奏。",
+          "stars": "11",
+          "isNew": true
+        },
+        {
+          "name": "next-slide",
+          "source": "cyc",
+          "description": "一句话做 PPT — 26+ 设计风格，零依赖单 HTML",
+          "install": "git clone https://github.com/codesstar/next-slide ~/.claude/skills/next-slide",
+          "repo": "https://github.com/codesstar/next-slide",
+          "detail": "自然语言生成精美演示文稿。26+ 风格，支持中英文，键盘导航，一键部署 Vercel。",
+          "stars": "",
+          "isNew": true
+        }
+      ]
+    }
+  ]
+}

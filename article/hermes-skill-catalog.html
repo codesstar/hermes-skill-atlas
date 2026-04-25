@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermes Agent Skill 完整目录</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #161412;
+    --bg-elevated: #1E1B18;
+    --surface: #252220;
+    --surface-hover: #2E2A27;
+    --text: #E8E3DA;
+    --text-secondary: #8A847A;
+    --text-dim: #5C574F;
+    --border: #2E2A27;
+    --border-light: #3A3530;
+    --accent: #D4A853;
+    --accent-hover: #E0BC6A;
+    --accent-dim: rgba(212, 168, 83, 0.15);
+    --tag-builtin: rgba(168, 140, 220, 0.15);
+    --tag-builtin-text: #B8A4E0;
+    --tag-hub: rgba(100, 200, 140, 0.15);
+    --tag-hub-text: #7DD4A0;
+    --tag-community: rgba(220, 140, 180, 0.15);
+    --tag-community-text: #E0A0C4;
+    --tag-official: rgba(212, 168, 83, 0.15);
+    --tag-official-text: #D4A853;
+    --tag-local: rgba(140, 135, 125, 0.15);
+    --tag-local-text: #A09A90;
+    --radius: 8px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+    --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: linear-gradient(180deg, #1E1A16 0%, var(--bg) 100%);
+    padding: 80px 24px 0;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(212, 168, 83, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 940px;
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    padding-bottom: 48px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.65em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 3.2em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 0;
+    color: var(--text);
+  }
+
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    line-height: 1.7;
+    font-family: var(--mono);
+    font-weight: 400;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: left;
+    padding: 20px 0;
+    flex: 1;
+    border-right: 1px solid var(--border);
+    padding-left: 20px;
+  }
+
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 1.6em;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.62em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .toc {
+    margin-bottom: 56px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-label {
+    font-family: var(--mono);
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .toc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.78em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .toc-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .toc-chip .count {
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.88em;
+  }
+
+  .category {
+    margin-bottom: 52px;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .category-header h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  .category-header .count {
+    font-family: var(--mono);
+    font-size: 0.72em;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .skill-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .skill-table tr[data-skill] {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s ease;
+    cursor: pointer;
+  }
+
+  .skill-table tr[data-skill]:hover {
+    background: var(--surface);
+  }
+
+  .skill-table tr[data-skill]:active {
+    background: var(--surface-hover);
+  }
+
+  .skill-table td {
+    padding: 12px 0;
+    vertical-align: top;
+  }
+
+  .skill-table td:first-child {
+    width: 210px;
+    padding-right: 16px;
+  }
+
+  .skill-table td:nth-child(2) {
+    width: 64px;
+    padding-right: 12px;
+  }
+
+  .skill-name-cell {
+    font-weight: 600;
+    font-size: 0.86em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .click-hint {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--border);
+    color: var(--text-dim);
+    font-size: 0.6em;
+    line-height: 16px;
+    text-align: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  tr[data-skill]:hover .click-hint {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .stars-badge {
+    font-family: var(--mono);
+    font-size: 0.72em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .skill-desc-cell {
+    color: var(--text-secondary);
+    font-size: 0.84em;
+    line-height: 1.55;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .tag-builtin { background: var(--tag-builtin); color: var(--tag-builtin-text); }
+  .tag-hub { background: var(--tag-hub); color: var(--tag-hub-text); }
+  .tag-community { background: var(--tag-community); color: var(--tag-community-text); }
+  .tag-official { background: var(--tag-official); color: var(--tag-official-text); }
+  .tag-local { background: var(--tag-local); color: var(--tag-local-text); }
+
+  .new-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.55em;
+    padding: 1px 5px;
+    border-radius: 2px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideUp 0.25s ease;
+    position: relative;
+  }
+
+  .modal-header {
+    padding: 28px 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .modal-header-left {
+    flex: 1;
+  }
+
+  .modal-title {
+    font-family: var(--mono);
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .modal-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .modal-close {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+
+  .modal-close:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .modal-body {
+    padding: 20px 28px 28px;
+  }
+
+  .modal-desc {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-section {
+    margin-bottom: 20px;
+  }
+
+  .modal-section-label {
+    font-family: var(--mono);
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .modal-repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.82em;
+    font-weight: 400;
+    transition: all 0.2s;
+    word-break: break-all;
+  }
+
+  .modal-repo-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .modal-repo-link svg {
+    flex-shrink: 0;
+  }
+
+  .modal-code-block {
+    background: #0D0C0B;
+    color: var(--text);
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.8em;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: auto;
+  }
+
+  .modal-code-block .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .modal-code-block .copy-btn:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+  }
+
+  .modal-code-block .copy-btn.copied {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .modal-usage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .modal-usage p {
+    font-size: 0.84em;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 6px;
+  }
+
+  .modal-usage p:last-child { margin-bottom: 0; }
+
+  .modal-usage strong { color: var(--text); }
+
+  .modal-usage code {
+    background: var(--bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-family: var(--mono);
+    color: var(--accent);
+  }
+
+  /* Callout boxes */
+  .callout {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+
+  .callout h3 {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .callout ol, .callout ul {
+    padding-left: 18px;
+    color: var(--text-secondary);
+    font-size: 0.84em;
+  }
+
+  .callout li {
+    margin-bottom: 6px;
+    line-height: 1.65;
+  }
+
+  .callout li strong { color: var(--text); }
+
+  .callout p {
+    color: var(--text-secondary);
+    font-size: 0.84em;
+    line-height: 1.65;
+  }
+
+  .callout code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.88em;
+    font-family: var(--mono);
+    color: var(--accent);
+  }
+
+  .callout-warm {
+    border-left: 3px solid var(--accent);
+  }
+
+  .callout-green {
+    border-left: 3px solid #7DD4A0;
+  }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .platform-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: all 0.2s ease;
+  }
+
+  .platform-item:hover {
+    border-color: var(--accent);
+  }
+
+  .platform-item h4 {
+    font-family: var(--mono);
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .platform-item p {
+    font-size: 0.72em;
+    color: var(--text-dim);
+  }
+
+  .footer {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 36px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 0.72em;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .footer strong { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.2em; }
+    .hero { padding: 48px 20px 0; }
+    .hero-inner { grid-template-columns: 1fr; gap: 20px; }
+    .stats-row { flex-wrap: wrap; }
+    .stat-item { min-width: 33%; }
+    .stat-num { font-size: 1.3em; }
+    .skill-table td:first-child { width: 140px; }
+    .toc-list { gap: 6px; }
+    .callout { padding: 18px 18px; }
+    .modal { margin: 12px; border-radius: 8px; }
+    .modal-header, .modal-body { padding-left: 18px; padding-right: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="position:absolute;top:16px;left:24px;">
+    <a href="hermes-skill-cards.html" style="font-family:'JetBrains Mono',monospace;font-size:0.78em;color:#8A847A;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid #2E2A27;border-radius:4px;transition:all 0.2s;" onmouseover="this.style.color='#D4A853';this.style.borderColor='#D4A853'" onmouseout="this.style.color='#8A847A';this.style.borderColor='#2E2A27'">← 卡片视图</a>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-badge">Skill Catalog</span>
+      <h1>the<br>complete<br>map of<br><span class="accent">hermes<br>skills.</span></h1>
+    </div>
+    <div>
+      <p class="subtitle">Hermes Agent 生态 200+ 个 Skill、插件、工具完整目录。涵盖 14 个分类，4 种来源。点击任意 Skill 查看详情和安装方式。</p>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Skills</div></div>
+    <div class="stat-item"><div class="stat-num">14</div><div class="stat-label">Categories</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Sources</div></div>
+    <div class="stat-item"><div class="stat-num">71</div><div class="stat-label">Built-in</div></div>
+    <div class="stat-item"><div class="stat-num">59</div><div class="stat-label">Hub</div></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-tags" id="modal-tags"></div>
+      </div>
+      <button class="modal-close" id="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-section" id="modal-repo-section">
+        <div class="modal-section-label">GitHub 仓库</div>
+        <a class="modal-repo-link" id="modal-repo-link" href="#" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          <span id="modal-repo-text"></span>
+        </a>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">安装命令</div>
+        <div class="modal-code-block">
+          <code id="modal-install"></code>
+          <button class="copy-btn" onclick="copyInstall(this)">复制</button>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">使用指南</div>
+        <div class="modal-usage" id="modal-usage"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <div class="toc-label">目录</div>
+    <div class="toc-list">
+      <a class="toc-chip" href="#productivity">日常生产力 <span class="count">21</span></a>
+      <a class="toc-chip" href="#search">搜索与研究 <span class="count">13</span></a>
+      <a class="toc-chip" href="#memory">记忆与上下文 <span class="count">9</span></a>
+      <a class="toc-chip" href="#writing">写作与内容 <span class="count">3</span></a>
+      <a class="toc-chip" href="#developer">开发者工具 <span class="count">22</span></a>
+      <a class="toc-chip" href="#agents">AI Agent 联动 <span class="count">12</span></a>
+      <a class="toc-chip" href="#automation">任务编排 <span class="count">10</span></a>
+      <a class="toc-chip" href="#creative">创意可视化 <span class="count">16</span></a>
+      <a class="toc-chip" href="#communication">通讯社交 <span class="count">9</span></a>
+      <a class="toc-chip" href="#security">安全红队 <span class="count">9</span></a>
+      <a class="toc-chip" href="#mlops">ML / MLOps <span class="count">35</span></a>
+      <a class="toc-chip" href="#fun">娱乐游戏 <span class="count">10</span></a>
+      <a class="toc-chip" href="#domain">专业领域 <span class="count">8</span></a>
+      <a class="toc-chip" href="#gui">工作区 GUI <span class="count">8</span></a>
+    </div>
+  </div>
+
+  <!-- 日常生产力 -->
+  <div class="category" id="productivity">
+    <div class="category-header"><h2>日常生产力</h2><span class="count">21 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="google-workspace" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Gmail 邮件读写、Google Calendar 日程管理、Google Drive 文件搜索，一个 Skill 搞定 Google 全家桶。支持发邮件、查日程、搜文件。" data-usage="<p><strong>使用前提：</strong>需要配置 Google OAuth 认证</p><p><strong>试试说：</strong><code>帮我看看今天有什么邮件</code> 或 <code>查一下这周的日程</code></p><p><strong>注意：</strong>首次使用会弹出 Google 授权页面</p>">
+        <td><div class="skill-name-cell">google-workspace <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">Gmail / Calendar / Drive 全家桶，读邮件、查日程、找文件</td></tr>
+      <tr data-skill="apple-reminders" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="直接操作 macOS / iOS 的提醒事项 app，支持创建、查询、完成提醒。跟 iPhone 实时同步。" data-usage="<p><strong>使用前提：</strong>macOS 且登录了 iCloud</p><p><strong>试试说：</strong><code>帮我明天三点提醒交作业</code></p><p><strong>适合：</strong>苹果生态用户的轻量任务管理</p>">
+        <td><div class="skill-name-cell">apple-reminders <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">"帮我明天三点提醒交作业" → 直接加到 iPhone 提醒事项</td></tr>
+      <tr data-skill="apple-notes" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="读写 macOS 备忘录 app，可以把聊天内容整理成笔记存下来。支持创建、搜索、追加内容。" data-usage="<p><strong>使用前提：</strong>macOS 且登录了 iCloud</p><p><strong>试试说：</strong><code>把刚才聊的整理成笔记</code></p>">
+        <td><div class="skill-name-cell">apple-notes <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">聊天内容整理成笔记，存到苹果备忘录</td></tr>
+      <tr data-skill="nano-pdf" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="一句话生成格式精美的 PDF 文件。支持 Markdown 语法，自动排版。" data-usage="<p><strong>试试说：</strong><code>帮我把这篇文章生成 PDF</code></p><p><strong>输出：</strong>会在当前目录生成 .pdf 文件</p>">
+        <td><div class="skill-name-cell">nano-pdf <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">一句话生成 PDF 文件</td></tr>
+      <tr data-skill="powerpoint" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="自动生成 PowerPoint 演示文稿，支持标题、内容、图表布局。" data-usage="<p><strong>试试说：</strong><code>帮我做一个关于 AI 趋势的 PPT</code></p><p><strong>输出：</strong>.pptx 文件</p>">
+        <td><div class="skill-name-cell">powerpoint <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">生成 PPT 演示文稿</td></tr>
+      <tr data-skill="ocr-and-documents" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="图片文字识别（OCR）+ 文档格式转换。可以从截图中提取文字。" data-usage="<p><strong>试试说：</strong><code>帮我识别这张图里的文字</code></p><p><strong>支持格式：</strong>PNG, JPG, PDF 等</p>">
+        <td><div class="skill-name-cell">ocr-and-documents <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">图片文字识别 + 文档处理</td></tr>
+      <tr data-skill="notion" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="通过 Notion API 读写页面和数据库。支持创建页面、查询数据库、更新内容。" data-usage="<p><strong>使用前提：</strong>需要 Notion Integration Token</p><p><strong>试试说：</strong><code>帮我在 Notion 里创建一个页面</code></p>">
+        <td><div class="skill-name-cell">notion <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">读写 Notion 页面和数据库</td></tr>
+      <tr data-skill="linear" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Linear 项目管理工具集成。查看 Issue、创建任务、更新状态。" data-usage="<p><strong>使用前提：</strong>需要 Linear API Key</p><p><strong>适合：</strong>用 Linear 做项目管理的团队</p>">
+        <td><div class="skill-name-cell">linear <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">项目管理工具 Linear 集成</td></tr>
+      <tr data-skill="maps" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="地图查询，支持地点搜索、路线规划。" data-usage="<p><strong>试试说：</strong><code>从悉尼大学到 Circular Quay 怎么走</code></p>">
+        <td><div class="skill-name-cell">maps <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">地图相关查询</td></tr>
+      <tr data-skill="find-nearby" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="基于 OpenStreetMap 查找附近的餐厅、咖啡店、药店等。零配置零 API key，开箱即用。" data-usage="<p><strong>试试说：</strong><code>附近有什么好吃的</code> 或 <code>最近的咖啡店在哪</code></p><p><strong>亮点：</strong>完全免费，不需要 Google Maps API</p>">
+        <td><div class="skill-name-cell">find-nearby <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">"附近有什么咖啡店" → OpenStreetMap 免费查，零配置</td></tr>
+      <tr data-skill="obsidian" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="读写 Obsidian 笔记库，支持搜索、创建、编辑笔记。理解 Obsidian 的双链和标签系统。" data-usage="<p><strong>使用前提：</strong>需指定 Obsidian Vault 路径</p><p><strong>试试说：</strong><code>在我的笔记库里搜索关于 AI 的笔记</code></p>">
+        <td><div class="skill-name-cell">obsidian <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">读写 Obsidian 笔记库</td></tr>
+      <tr data-skill="1password" data-source="hub" data-repo="" data-install="hermes skills install 1password" data-desc="1Password 密码管理器集成，安全地查询和使用存储的密码和凭证。" data-usage="<p><strong>使用前提：</strong>需要安装 1Password CLI (op)</p><p><strong>适合：</strong>需要在终端中快速调用密码的开发者</p>">
+        <td><div class="skill-name-cell">1password <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">1Password 密码管理器集成</td></tr>
+      <tr data-skill="qmd" data-source="hub" data-repo="" data-install="hermes skills install qmd" data-desc="个人知识库搜索引擎，可以搜索本地笔记、文档、代码片段。" data-usage="<p><strong>试试说：</strong><code>搜索我笔记里关于 Docker 的内容</code></p>">
+        <td><div class="skill-name-cell">qmd <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">搜索个人知识库、笔记、文档</td></tr>
+      <tr data-skill="siyuan" data-source="hub" data-repo="" data-install="hermes skills install siyuan" data-desc="思源笔记 API 集成。思源是国产本地优先的笔记软件，支持双链、数据库、闪卡等功能。" data-usage="<p><strong>使用前提：</strong>需要运行思源笔记客户端</p><p><strong>适合：</strong>思源笔记用户（国内替代 Obsidian）</p>">
+        <td><div class="skill-name-cell">siyuan <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">思源笔记 API 集成（国产笔记软件）</td></tr>
+      <tr data-skill="fitness-nutrition" data-source="hub" data-repo="" data-install="hermes skills install fitness-nutrition" data-desc="健身计划生成 + 营养追踪。根据你的目标制定训练和饮食方案。" data-usage="<p><strong>试试说：</strong><code>帮我制定一个增肌计划</code></p>">
+        <td><div class="skill-name-cell">fitness-nutrition <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">健身计划 + 营养追踪</td></tr>
+      <tr data-skill="canvas" data-source="hub" data-repo="" data-install="hermes skills install canvas" data-desc="Canvas LMS 学习管理系统集成。查课程、作业、成绩。" data-usage="<p><strong>使用前提：</strong>需要 Canvas API Token</p><p><strong>适合：</strong>大学生查课程和作业</p>">
+        <td><div class="skill-name-cell">canvas <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">Canvas LMS 学校系统，查课程和作业</td></tr>
+      <tr data-skill="memento-flashcards" data-source="hub" data-repo="" data-install="hermes skills install memento-flashcards" data-desc="间隔重复记忆卡片系统。自动生成闪卡帮你背单词、记知识点。" data-usage="<p><strong>试试说：</strong><code>帮我把这些知识点做成闪卡</code></p><p><strong>原理：</strong>基于遗忘曲线的间隔重复算法</p>">
+        <td><div class="skill-name-cell">memento-flashcards <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">间隔重复记忆卡片，背单词/知识点</td></tr>
+      <tr data-skill="microsoft-workspace" data-source="community" data-repo="https://github.com/jart/microsoft-workspace-skill" data-install="hermes skills install microsoft-workspace --force" data-desc="Outlook 邮件、Office 365、OneDrive 集成。微软生态用户的生产力工具。" data-usage="<p><strong>使用前提：</strong>需要 Microsoft Graph API 配置</p><p><strong>适合：</strong>用 Outlook / Office 365 的企业用户</p>">
+        <td><div class="skill-name-cell">microsoft-workspace <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Outlook / Office 365 集成</td></tr>
+      <tr data-skill="hermes-life-os" data-source="community" data-repo="https://github.com/Lethe044/hermes-life-os" data-install="hermes skills install Lethe044/hermes-life-os --force" data-desc="把 Hermes 变成你的个人生活操作系统。自动检测日常模式、学习你的习惯偏好、帮你规划日程和目标。长期运行会越来越懂你。" data-usage="<p><strong>亮点：</strong>长期运行后能学习你的习惯模式</p><p><strong>试试说：</strong><code>帮我规划下周的日程</code></p><p><strong>注意：</strong>需要较长时间的数据积累才能发挥最大效果</p>">
+        <td><div class="skill-name-cell">hermes-life-os <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">个人生活 OS — 检测日常模式、学习习惯、自动规划</td></tr>
+      <tr data-skill="personal-api" data-source="community" data-repo="https://github.com/beiyuii/personal-api-skill" data-install="hermes skills install beiyuii/personal-api-skill --force" data-desc="把你的 Obsidian 笔记库变成 Agent 可读的身份层。让 Hermes 通过 API 理解你是谁、你关心什么。" data-usage="<p><strong>使用前提：</strong>需要 Obsidian vault 路径</p><p><strong>效果：</strong>Hermes 能基于你的笔记内容个性化回答</p><p><strong>适合：</strong>重度 Obsidian 用户 + 想让 AI 更懂自己</p>">
+        <td><div class="skill-name-cell">personal-api <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">把 Obsidian 笔记库变成 Agent 可读的身份层</td></tr>
+      <tr data-skill="next-slide" data-source="local" data-repo="" data-install="本地 Skill，已预装" data-desc="一句话生成浏览器端的 Reveal.js 演示 Slides。" data-usage="<p><strong>试试说：</strong><code>帮我做一个 AI 入门的 slides</code></p><p><strong>输出：</strong>HTML 文件，浏览器打开即可演示</p>">
+        <td><div class="skill-name-cell">next-slide <span class="click-hint">→</span></div></td><td><span class="tag tag-local">本地</span></td><td class="skill-desc-cell">一句话生成演示 Slides</td></tr>
+    </table>
+  </div>
+
+  <!-- 搜索与研究 -->
+  <div class="category" id="search">
+    <div class="category-header"><h2>搜索与研究</h2><span class="count">13 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="duckduckgo-search" data-source="hub" data-repo="" data-install="hermes skills install duckduckgo-search" data-desc="通过 DuckDuckGo 搜索引擎查找信息。支持文字、新闻、图片搜索。完全免费，不需要 API key。" data-usage="<p><strong>亮点：</strong>零配置，不需要 API key</p><p><strong>试试说：</strong><code>帮我搜一下最新的 AI 新闻</code></p>">
+        <td><div class="skill-name-cell">duckduckgo-search <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">免费搜索引擎，文字/新闻/图片</td></tr>
+      <tr data-skill="scrapling" data-source="hub" data-repo="" data-install="hermes skills install scrapling" data-desc="智能网页爬虫，能抓取任意网页的内容并结构化输出。自动处理 JavaScript 渲染页面。" data-usage="<p><strong>试试说：</strong><code>帮我抓取这个网页的内容</code></p><p><strong>注意：</strong>请遵守目标网站的 robots.txt</p>">
+        <td><div class="skill-name-cell">scrapling <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">网页爬虫，抓取任意网页内容</td></tr>
+      <tr data-skill="arxiv" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="搜索 arXiv 学术论文。支持关键词搜索、作者搜索、分类浏览。零配置零依赖。" data-usage="<p><strong>试试说：</strong><code>搜一下最近关于 LLM reasoning 的论文</code></p><p><strong>亮点：</strong>直接搜，不需要任何配置</p>">
+        <td><div class="skill-name-cell">arxiv <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">搜学术论文，零配置零依赖</td></tr>
+      <tr data-skill="polymarket" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="查询 Polymarket 预测市场的实时数据。涵盖选举、体育、加密货币等多个领域的预测赔率。" data-usage="<p><strong>试试说：</strong><code>Polymarket 上现在什么预测最火</code></p>">
+        <td><div class="skill-name-cell">polymarket <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">预测市场实时数据（选举、体育、加密货币）</td></tr>
+      <tr data-skill="blogwatcher" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="监控指定博客和网站的更新。支持 RSS 和网页抓取两种方式。" data-usage="<p><strong>试试说：</strong><code>帮我监控 Anthropic 博客的更新</code></p>">
+        <td><div class="skill-name-cell">blogwatcher <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">监控博客/网站更新</td></tr>
+      <tr data-skill="llm-wiki" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Karpathy 风格的知识库生成器。把任何话题整理成结构化的 wiki 页面，自动建立内部链接。" data-usage="<p><strong>试试说：</strong><code>帮我整理一个关于 Transformer 架构的 wiki</code></p><p><strong>亮点：</strong>自动建立知识点之间的交叉引用</p>">
+        <td><div class="skill-name-cell">llm-wiki <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">Karpathy 式知识库 — 把任何话题整理成结构化 wiki</td></tr>
+      <tr data-skill="research-paper-writing" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="辅助学术论文写作，自动搜索和插入引用，生成参考文献列表。" data-usage="<p><strong>试试说：</strong><code>帮我写一篇关于 LLM 的综述论文</code></p><p><strong>适合：</strong>研究生、科研人员</p>">
+        <td><div class="skill-name-cell">research-paper-writing <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">辅助写学术论文，自动引用</td></tr>
+      <tr data-skill="youtube-content" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="分析 YouTube 视频内容，提取字幕和关键信息。" data-usage="<p><strong>试试说：</strong><code>帮我分析这个 YouTube 视频讲了什么</code></p>">
+        <td><div class="skill-name-cell">youtube-content <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">分析 YouTube 视频内容</td></tr>
+      <tr data-skill="sherlock" data-source="hub" data-repo="https://github.com/sherlock-project/sherlock" data-install="hermes skills install sherlock" data-desc="跨 400+ 社交平台搜索用户名，查看某人在哪些平台有账号。OSINT 经典工具。" data-usage="<p><strong>试试说：</strong><code>帮我查一下 username123 在哪些平台有账号</code></p><p><strong>注意：</strong>仅用于合法的信息收集</p>">
+        <td><div class="skill-name-cell">sherlock <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">跨 400+ 社交平台搜用户名（OSINT 神器）</td></tr>
+      <tr data-skill="domain-intel" data-source="hub" data-repo="" data-install="hermes skills install domain-intel" data-desc="域名情报侦察。查询 WHOIS、DNS 记录、子域名枚举。" data-usage="<p><strong>试试说：</strong><code>帮我查一下 example.com 的域名信息</code></p>">
+        <td><div class="skill-name-cell">domain-intel <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">域名情报侦察</td></tr>
+      <tr data-skill="last30days-skill" data-source="community" data-repo="https://github.com/maisa-ai/last30days-skill" data-install="hermes skills install maisa-ai/last30days-skill --force" data-desc="跨 Reddit、X、YouTube、Hacker News 研究任何话题的近 30 天动态。零 API key，开箱即用。Reddit 社区力荐。" data-usage="<p><strong>试试说：</strong><code>帮我调研一下最近 30 天 AI Agent 的讨论热点</code></p><p><strong>亮点：</strong>零配置，同时搜 4 个平台</p><p><strong>社区评价：</strong>Reddit r/LocalLLaMA 高赞推荐</p>">
+        <td><div class="skill-name-cell">last30days-skill <span class="click-hint">→</span><span class="stars-badge">Reddit 力荐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">跨 Reddit/X/YouTube/HN 研究任何话题，零 API key</td></tr>
+      <tr data-skill="hermes-web-search-plus" data-source="community" data-repo="https://github.com/robbyczgw-cla/hermes-web-search-plus" data-install="hermes skills install robbyczgw-cla/hermes-web-search-plus --force" data-desc="多搜索引擎智能路由。自动选择最优搜索源（Google、Bing、DuckDuckGo 等），聚合结果。" data-usage="<p><strong>亮点：</strong>比单一搜索引擎覆盖更全</p><p><strong>试试说：</strong><code>搜一下 Hermes Agent 最新更新</code></p>">
+        <td><div class="skill-name-cell">hermes-web-search-plus <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">多搜索引擎智能路由，自动选最优搜索源</td></tr>
+      <tr data-skill="not-human-search" data-source="community" data-repo="https://github.com/not-human-search/nhs-skill" data-install="hermes skills install not-human-search/nhs-skill --force" data-desc="发现 8600+ 个 AI 友好网站。专门为 AI Agent 设计的网站索引。" data-usage="<p><strong>试试说：</strong><code>帮我找可以直接给 AI 用的数据源网站</code></p>">
+        <td><div class="skill-name-cell">Not Human Search <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">8600+ AI 友好网站发现</td></tr>
+    </table>
+  </div>
+
+  <!-- 记忆与上下文 -->
+  <div class="category" id="memory">
+    <div class="category-header"><h2>记忆与上下文</h2><span class="count">9 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="hindsight" data-source="community" data-repo="https://github.com/skydeckai/hindsight" data-install="hermes skills install skydeckai/hindsight --force" data-desc="长期记忆层，结合语义搜索 + 知识图谱 + 时间线检索。社区有人花 $200 测了 30 个记忆 skill，最后只留了这一个。" data-usage="<p><strong>社区评价：</strong>「$200 测了 30 个记忆 skill，只有这个值」</p><p><strong>注意：</strong>搭配贵模型使用 token 消耗较大</p><p><strong>推荐搭配：</strong>Reflect skill（每日自动生成洞察）</p>">
+        <td><div class="skill-name-cell">hindsight <span class="click-hint">→</span><span class="stars-badge">"$200 测 30 个只剩这个值"</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">长期记忆层 — 语义 + 图 + 时间检索</td></tr>
+      <tr data-skill="honcho" data-source="hub" data-repo="https://github.com/plastic-labs/honcho" data-install="hermes skills install honcho" data-desc="跨会话持久化记忆系统。让 Hermes 在不同对话之间记住你说过的话和偏好。社区推荐"第一个装的记忆 skill"。" data-usage="<p><strong>社区评价：</strong>「新手第一个装的记忆 skill」</p><p><strong>亮点：</strong>跨会话持久化，重启后记忆不丢</p>">
+        <td><div class="skill-name-cell">honcho <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">跨会话记忆系统（社区推荐"第一个装的记忆 skill"）</td></tr>
+      <tr data-skill="reflect" data-source="community" data-repo="https://github.com/skydeckai/reflect" data-install="hermes skills install skydeckai/reflect --force" data-desc="配合 Hindsight 使用。每日自动分析你的对话和行为模式，生成洞察和发现。" data-usage="<p><strong>推荐搭配：</strong>先装 Hindsight，再装 Reflect</p><p><strong>效果：</strong>每天自动生成「你这周的模式」报告</p>">
+        <td><div class="skill-name-cell">Reflect <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">配合 Hindsight，每日自动生成洞察和模式发现</td></tr>
+      <tr data-skill="icarus-plugin" data-source="community" data-repo="https://github.com/dosuken123/icarus-plugin" data-install="hermes skills install dosuken123/icarus-plugin --force" data-desc="跨 Hermes 实例的共享记忆。多个 Hermes 之间可以共享学到的东西，实现「集体智慧」。" data-usage="<p><strong>适合：</strong>跑多个 Hermes 实例的用户</p><p><strong>效果：</strong>一个 Hermes 学会的东西，其他实例也能用</p>">
+        <td><div class="skill-name-cell">icarus-plugin <span class="click-hint">→</span><span class="stars-badge">101 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">跨实例共享记忆，多个 Hermes 之间共享学到的东西</td></tr>
+      <tr data-skill="plur" data-source="community" data-repo="https://github.com/plur-ai/plur" data-install="hermes skills install plur-ai/plur --force" data-desc="开放 engram 格式的共享记忆层。让不同 AI Agent（不限于 Hermes）之间共享记忆。" data-usage="<p><strong>亮点：</strong>开放格式，不限于 Hermes 生态</p><p><strong>适合：</strong>多 Agent 协作场景</p>">
+        <td><div class="skill-name-cell">plur <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">开放 engram 格式共享记忆层，多 Agent 协作记忆</td></tr>
+      <tr data-skill="flowstate-qmd" data-source="community" data-repo="" data-install="hermes skills install flowstate-qmd --force" data-desc="预测式 RAG 记忆系统，在你需要之前就准备好相关记忆。" data-usage="<p><strong>原理：</strong>预测你接下来需要什么信息，提前加载到上下文</p>">
+        <td><div class="skill-name-cell">flowstate-qmd <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">预测式 RAG 记忆</td></tr>
+      <tr data-skill="mnemo-hermes" data-source="community" data-repo="" data-install="hermes skills install mnemo-hermes --force" data-desc="基于 PostgreSQL pgvector 的语义记忆插件。适合需要大规模向量存储的场景。" data-usage="<p><strong>使用前提：</strong>需要 PostgreSQL + pgvector 扩展</p><p><strong>适合：</strong>技术用户、需要精确语义搜索</p>">
+        <td><div class="skill-name-cell">mnemo-hermes <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">pgvector 语义记忆插件</td></tr>
+      <tr data-skill="yantrikdb" data-source="community" data-repo="" data-install="hermes skills install yantrikdb --force" data-desc="自维护记忆数据库，内置冲突解决机制。当多个记忆相互矛盾时自动处理。" data-usage="<p><strong>亮点：</strong>自动检测和解决记忆冲突</p><p><strong>适合：</strong>长期使用、记忆量大的场景</p>">
+        <td><div class="skill-name-cell">yantrikdb <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自维护记忆 + 冲突解决</td></tr>
+      <tr data-skill="personal-api-memory" data-source="community" data-repo="https://github.com/beiyuii/personal-api-skill" data-install="hermes skills install beiyuii/personal-api-skill --force" data-desc="Obsidian 笔记 → Agent 身份层。同时列在生产力类。" data-usage="<p><strong>详见：</strong>日常生产力分类中的 personal-api</p>">
+        <td><div class="skill-name-cell">personal-api <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Obsidian 笔记 → Agent 身份层（同时列在生产力类）</td></tr>
+    </table>
+  </div>
+
+  <!-- 写作与内容 -->
+  <div class="category" id="writing">
+    <div class="category-header"><h2>写作与内容</h2><span class="count">3 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="avoid-ai-writing" data-source="community" data-repo="https://github.com/conorbronsdon/avoid-ai-writing" data-install="hermes skills install conorbronsdon/avoid-ai-writing --force" data-desc="去除 AI 写作的典型痕迹（如「总而言之」「值得注意的是」等）。让文章读起来更像人写的自然文字。写论文、文案、邮件刚需。" data-usage="<p><strong>亮点：</strong>1200+ ⭐，社区最受欢迎的写作 skill</p><p><strong>适合：</strong>写论文怕被查 AI、写文案要自然感</p><p><strong>注意：</strong>装完后 Hermes 的所有文字输出风格都会改变</p>">
+        <td><div class="skill-name-cell">avoid-ai-writing <span class="click-hint">→</span><span class="stars-badge">1.2K ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">去除 AI 写作痕迹，让文章像人写的（写论文/文案刚需）</td></tr>
+      <tr data-skill="litprog-skill" data-source="community" data-repo="https://github.com/tlehman/litprog-skill" data-install="hermes skills install tlehman/litprog-skill --force" data-desc="文学编程 (Literate Programming) — 代码和文档编织在一起。支持 Claude Code、OpenCode、Hermes 三个平台。" data-usage="<p><strong>理念：</strong>Donald Knuth 的文学编程 — 先写文档，代码嵌入其中</p><p><strong>适合：</strong>写技术文档、教程、研究笔记</p>">
+        <td><div class="skill-name-cell">litprog-skill <span class="click-hint">→</span><span class="stars-badge">105 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">文学编程 — 代码和文档编织在一起</td></tr>
+      <tr data-skill="autonovel" data-source="official" data-repo="" data-install="hermes skills install autonovel" data-desc="自主小说写作流水线。从大纲到章节到完整小说，自动化整个创作过程。" data-usage="<p><strong>试试说：</strong><code>帮我写一个赛博朋克风格的短篇小说</code></p><p><strong>适合：</strong>网文作者、创意写作爱好者</p>">
+        <td><div class="skill-name-cell">autonovel <span class="click-hint">→</span></div></td><td><span class="tag tag-official">官方</span></td><td class="skill-desc-cell">自主小说写作流水线</td></tr>
+    </table>
+  </div>
+
+  <!-- 开发者工具 -->
+  <div class="category" id="developer">
+    <div class="category-header"><h2>开发者工具</h2><span class="count">22 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="github-issues" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="GitHub Issue 管理。创建、查看、评论、关闭 Issue。" data-usage="<p><strong>使用前提：</strong>需要 GitHub 认证（<code>hermes github auth</code>）</p><p><strong>试试说：</strong><code>帮我看看这个 repo 有什么 open issue</code></p>">
+        <td><div class="skill-name-cell">github-issues <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">管理 GitHub Issue</td></tr>
+      <tr data-skill="github-pr-workflow" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="GitHub PR 全流程管理。创建、审查、合并 Pull Request。" data-usage="<p><strong>试试说：</strong><code>帮我创建一个 PR</code></p>">
+        <td><div class="skill-name-cell">github-pr-workflow <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">GitHub PR 工作流</td></tr>
+      <tr data-skill="github-code-review" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="自动代码审查。分析 diff，提出改进建议。" data-usage="<p><strong>试试说：</strong><code>帮我 review 这个 PR</code></p>">
+        <td><div class="skill-name-cell">github-code-review <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">代码审查</td></tr>
+      <tr data-skill="github-repo-management" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="GitHub 仓库管理。创建 repo、管理分支、设置 webhook 等。" data-usage="<p><strong>试试说：</strong><code>帮我创建一个新的 GitHub 仓库</code></p>">
+        <td><div class="skill-name-cell">github-repo-management <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">仓库管理</td></tr>
+      <tr data-skill="codebase-inspection" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="扫描代码库，统计文件数量、编程语言分布、代码行数。快速了解一个项目的全貌。" data-usage="<p><strong>试试说：</strong><code>分析一下这个项目的代码结构</code></p>">
+        <td><div class="skill-name-cell">codebase-inspection <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">扫描代码库，统计文件/语言/行数</td></tr>
+      <tr data-skill="systematic-debugging" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="系统化的 debug 框架。按步骤分析 bug、定位原因、提出修复方案。" data-usage="<p><strong>试试说：</strong><code>这个 bug 帮我系统地分析一下</code></p>">
+        <td><div class="skill-name-cell">systematic-debugging <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">系统化 debug 框架</td></tr>
+      <tr data-skill="test-driven-development" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="TDD 工作流。先写测试，再写实现，保证代码质量。" data-usage="<p><strong>适合：</strong>想践行 TDD 的开发者</p>">
+        <td><div class="skill-name-cell">test-driven-development <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">TDD 工作流</td></tr>
+      <tr data-skill="plan" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="项目规划和任务分解。把大目标拆成可执行的小步骤。" data-usage="<p><strong>试试说：</strong><code>帮我规划这个项目的开发步骤</code></p>">
+        <td><div class="skill-name-cell">plan <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">项目规划和任务分解</td></tr>
+      <tr data-skill="writing-plans" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="写技术方案文档（RFC/设计文档）。" data-usage="<p><strong>适合：</strong>需要写技术方案的团队</p>">
+        <td><div class="skill-name-cell">writing-plans <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">写技术方案文档</td></tr>
+      <tr data-skill="subagent-driven-dev" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="子 Agent 协作开发模式。Hermes 可以启动多个子 Agent 并行处理不同任务。" data-usage="<p><strong>效果：</strong>像 Claude Code 的 Agent 模式，多个 worker 并行</p>">
+        <td><div class="skill-name-cell">subagent-driven-dev <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">子 Agent 协作开发</td></tr>
+      <tr data-skill="native-mcp" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="接入 MCP (Model Context Protocol) 协议。让 Hermes 像 Claude Code 一样使用 MCP 工具服务器。" data-usage="<p><strong>亮点：</strong>支持所有 MCP 兼容的工具服务器</p><p><strong>类似：</strong>Claude Code 的 MCP 集成</p>">
+        <td><div class="skill-name-cell">native-mcp <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">接入 MCP 协议（Claude Code 同款）</td></tr>
+      <tr data-skill="docker-management" data-source="hub" data-repo="" data-install="hermes skills install docker-management" data-desc="Docker 容器、镜像、网络的管理。一句话起容器、查日志、管理集群。" data-usage="<p><strong>使用前提：</strong>需要安装 Docker</p><p><strong>试试说：</strong><code>帮我启动一个 Redis 容器</code></p>">
+        <td><div class="skill-name-cell">docker-management <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">Docker 容器/镜像/网络管理</td></tr>
+      <tr data-skill="fastmcp" data-source="hub" data-repo="" data-install="hermes skills install fastmcp" data-desc="快速构建、测试、部署 MCP 服务器。" data-usage="<p><strong>适合：</strong>想自己写 MCP 工具的开发者</p>">
+        <td><div class="skill-name-cell">fastmcp <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">构建、测试、部署 MCP 服务器</td></tr>
+      <tr data-skill="gitnexus-explorer" data-source="hub" data-repo="" data-install="hermes skills install gitnexus-explorer" data-desc="代码库智能索引和交互式探索。快速理解陌生代码库的结构。" data-usage="<p><strong>试试说：</strong><code>帮我分析这个项目的架构</code></p>">
+        <td><div class="skill-name-cell">gitnexus-explorer <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">代码库索引和交互式探索</td></tr>
+      <tr data-skill="parallel-cli" data-source="hub" data-repo="" data-install="hermes skills install parallel-cli" data-desc="并行执行多个 CLI 任务，加速批处理。" data-usage="<p><strong>试试说：</strong><code>同时在 5 个 repo 里跑 git pull</code></p>">
+        <td><div class="skill-name-cell">parallel-cli <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">并行 CLI 任务执行</td></tr>
+      <tr data-skill="rtk-hermes" data-source="community" data-repo="https://github.com/ogallotti/rtk-hermes" data-install="hermes skills install ogallotti/rtk-hermes --force" data-desc="拦截 shell 命令输出，自动压缩 60-90%。大幅减少 token 消耗，尤其适合输出量大的命令。" data-usage="<p><strong>效果：</strong>一个 10000 行的日志压缩成 1000 行摘要</p><p><strong>适合：</strong>经常跑长输出命令的开发者</p><p><strong>注意：</strong>装完自动生效，不需要额外操作</p>">
+        <td><div class="skill-name-cell">rtk-hermes <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">终端输出压缩 60-90%，大幅省 token</td></tr>
+      <tr data-skill="lintlang" data-source="community" data-repo="" data-install="hermes skills install lintlang --force" data-desc="配置文件和 prompt 的静态检查工具。帮你找出配置错误和 prompt 漏洞。" data-usage="<p><strong>试试说：</strong><code>检查我的 SOUL.md 有没有问题</code></p>">
+        <td><div class="skill-name-cell">lintlang <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">配置文件和 prompt 静态检查</td></tr>
+      <tr data-skill="incident-commander" data-source="community" data-repo="https://github.com/Lethe044/hermes-incident-commander" data-install="hermes skills install Lethe044/hermes-incident-commander --force" data-desc="自主 SRE Agent — 自动检测生产事故、分析根因、尝试自愈。支持 Prometheus、Grafana 等监控系统集成。" data-usage="<p><strong>适合：</strong>运维/SRE 团队</p><p><strong>效果：</strong>7x24 自动值班，发现问题立刻响应</p>">
+        <td><div class="skill-name-cell">incident-commander <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自主 SRE — 生产事故自动检测 + 自愈</td></tr>
+      <tr data-skill="hermes-cloudflare" data-source="community" data-repo="https://github.com/raulvidis/hermes-cloudflare" data-install="hermes skills install raulvidis/hermes-cloudflare --force" data-desc="通过 Cloudflare Browser Rendering 实现无头浏览。不需要本地 Chrome，在云端渲染网页。" data-usage="<p><strong>使用前提：</strong>需要 Cloudflare 账号</p><p><strong>亮点：</strong>不依赖本地浏览器，云端渲染</p>">
+        <td><div class="skill-name-cell">hermes-cloudflare <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Cloudflare 浏览器渲染，无头浏览</td></tr>
+      <tr data-skill="github-auth" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="GitHub OAuth 认证。使用其他 GitHub 相关 Skill 的前置步骤。" data-usage="<p><strong>首次使用：</strong>运行 <code>hermes github auth</code></p>">
+        <td><div class="skill-name-cell">github-auth <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">GitHub 认证</td></tr>
+      <tr data-skill="webhook-subscriptions" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Webhook 事件订阅管理。接收和处理来自各种服务的 Webhook 通知。" data-usage="<p><strong>适合：</strong>需要实时事件通知的自动化场景</p>">
+        <td><div class="skill-name-cell">webhook-subscriptions <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">Webhook 订阅管理</td></tr>
+      <tr data-skill="chrome-profiles" data-source="community" data-repo="https://github.com/anpicasso/hermes-plugin-chrome-profiles" data-install="hermes skills install anpicasso/hermes-plugin-chrome-profiles --force" data-desc="通过 Chrome DevTools Protocol (CDP) 在不同 Chrome Profile 之间切换。适合多账号管理场景。" data-usage="<p><strong>适合：</strong>多 Chrome Profile 用户（工作/个人/测试）</p><p><strong>使用前提：</strong>Chrome 需要开启 CDP 远程调试</p>">
+        <td><div class="skill-name-cell">chrome-profiles <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">通过 CDP 在 Chrome Profile 之间切换浏览器工具</td></tr>
+    </table>
+  </div>
+
+  <!-- AI Agent 联动 -->
+  <div class="category" id="agents">
+    <div class="category-header"><h2>AI Agent 联动</h2><span class="count">12 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="claude-code" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="在 Hermes 中调用 Claude Code 帮你写代码。相当于嵌套了一个 Claude Code Agent。" data-usage="<p><strong>使用前提：</strong>需要安装 Claude Code CLI</p><p><strong>效果：</strong>Hermes 当项目经理，Claude Code 当码农</p>">
+        <td><div class="skill-name-cell">claude-code <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">调用 Claude Code 帮你写代码</td></tr>
+      <tr data-skill="codex" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="调用 OpenAI Codex CLI 编写代码。" data-usage="<p><strong>使用前提：</strong>需要安装 OpenAI Codex CLI + API key</p>">
+        <td><div class="skill-name-cell">codex <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">调用 OpenAI Codex CLI</td></tr>
+      <tr data-skill="opencode" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="调用 OpenCode CLI，另一个开源编程 Agent。" data-usage="<p><strong>使用前提：</strong>需要安装 OpenCode</p>">
+        <td><div class="skill-name-cell">opencode <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">调用 OpenCode CLI</td></tr>
+      <tr data-skill="hermes-agent" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Hermes 套娃 — 启动一个子 Hermes 来执行特定子任务。主 Hermes 当 PM，子 Hermes 当 worker。" data-usage="<p><strong>试试说：</strong><code>帮我启动一个子 agent 去研究这个话题</code></p><p><strong>注意：</strong>会消耗额外 token</p>">
+        <td><div class="skill-name-cell">hermes-agent <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">Hermes 套娃 — 启动子 Hermes 执行子任务</td></tr>
+      <tr data-skill="blackbox" data-source="hub" data-repo="" data-install="hermes skills install blackbox" data-desc="调用 Blackbox AI 编程助手。" data-usage="<p><strong>适合：</strong>想对比不同 AI 编程助手的效果</p>">
+        <td><div class="skill-name-cell">blackbox <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">调用 Blackbox AI 编程助手</td></tr>
+      <tr data-skill="openclaw-migration" data-source="hub" data-repo="" data-install="hermes claw migrate" data-desc="从 OpenClaw 一键迁移到 Hermes。自动导入 Skill、记忆、配置。" data-usage="<p><strong>迁移命令：</strong><code>hermes claw migrate</code></p><p><strong>注意：</strong>迁移来的 Skill 大多是 prompt 包装，功能有限</p>">
+        <td><div class="skill-name-cell">openclaw-migration <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">从 OpenClaw 一键迁移到 Hermes</td></tr>
+      <tr data-skill="mcporter" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="MCP 服务器的发现、安装、管理工具。" data-usage="<p><strong>试试说：</strong><code>帮我安装一个文件系统 MCP 服务器</code></p>">
+        <td><div class="skill-name-cell">mcporter <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">MCP 服务器管理和配置</td></tr>
+      <tr data-skill="evey-bridge" data-source="community" data-repo="https://github.com/42-evey/evey-bridge-plugin" data-install="hermes skills install 42-evey/evey-bridge-plugin --force" data-desc="Claude Code 和 Hermes 之间的无缝切换桥接。在两个 Agent 之间共享上下文和工作状态。" data-usage="<p><strong>适合：</strong>同时使用 Claude Code 和 Hermes 的用户</p><p><strong>效果：</strong>两个 Agent 之间无缝接力</p>">
+        <td><div class="skill-name-cell">evey-bridge <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Claude Code ↔ Hermes 无缝切换桥接</td></tr>
+      <tr data-skill="hermes-acp-skill" data-source="community" data-repo="" data-install="hermes skills install hermes-acp-skill --force" data-desc="多 Agent 委派桥接。把任务分发给不同的 AI Agent 处理。" data-usage="<p><strong>适合：</strong>多 Agent 编排场景</p>">
+        <td><div class="skill-name-cell">hermes-acp-skill <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">多 Agent 委派桥接</td></tr>
+      <tr data-skill="multiagent" data-source="community" data-repo="" data-install="hermes skills install multiagent --force" data-desc="17 个专业化 Agent 协同工作。每个 Agent 有不同的专长（设计、编码、测试等）。" data-usage="<p><strong>效果：</strong>一个指令，17 个专家一起上</p>">
+        <td><div class="skill-name-cell">multiagent <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">17 个专业化 Agent 协同</td></tr>
+      <tr data-skill="colony-skill" data-source="community" data-repo="https://github.com/TheColonyCC/colony-skill" data-install="hermes skills install TheColonyCC/colony-skill --force" data-desc="Agent + 人类协作平台。发现和分享研究成果，内建声誉系统。" data-usage="<p><strong>亮点：</strong>Agent 之间可以互相学习和评价</p>">
+        <td><div class="skill-name-cell">colony-skill <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Agent + 人类协作平台，发现分享 + 声誉系统</td></tr>
+      <tr data-skill="agentic-mcp" data-source="community" data-repo="https://github.com/cablate/Agentic-MCP-Skill" data-install="hermes skills install cablate/Agentic-MCP-Skill --force" data-desc="MCP 客户端桥接 Skill。连接任意 MCP 工具服务器，带 agentskills.io 验证。" data-usage="<p><strong>适合：</strong>想用 MCP 生态中工具的用户</p><p><strong>亮点：</strong>自动发现和连接 MCP 服务器</p>">
+        <td><div class="skill-name-cell">Agentic-MCP <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">MCP 客户端桥接，连接任意 MCP 工具服务器</td></tr>
+    </table>
+  </div>
+
+  <!-- 任务编排 -->
+  <div class="category" id="automation">
+    <div class="category-header"><h2>任务编排与自动化</h2><span class="count">10 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="hermes-skill-factory" data-source="community" data-repo="https://github.com/Romanescu11/hermes-skill-factory" data-install="hermes skills install Romanescu11/hermes-skill-factory --force" data-desc="Meta-Skill — 观察你的工作流，自动生成可复用的新 Skill。AI 自己学新技能。" data-usage="<p><strong>亮点：</strong>AI 观察你怎么用，自动提炼成 Skill</p><p><strong>注意：</strong>生成的 Skill 需要人工审核 — 社区说「它总觉得自己做得很好」</p>">
+        <td><div class="skill-name-cell">hermes-skill-factory <span class="click-hint">→</span><span class="stars-badge">140 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">观察工作流，自动生成新 Skill（AI 自己学新技能）</td></tr>
+      <tr data-skill="maestro" data-source="community" data-repo="https://github.com/ReinaMacCredy/maestro" data-install="hermes skills install ReinaMacCredy/maestro --force" data-desc="复杂任务编排系统。Conductor 负责规划，Beads 负责追踪进度，结构化验证确保质量。" data-usage="<p><strong>适合：</strong>多步骤复杂任务的自动化</p><p><strong>效果：</strong>自动分解任务 → 并行执行 → 汇总结果</p>">
+        <td><div class="skill-name-cell">maestro <span class="click-hint">→</span><span class="stars-badge">82 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">复杂任务编排 — Conductor 规划 + Beads 进度追踪</td></tr>
+      <tr data-skill="execplan-skill" data-source="community" data-repo="https://github.com/tiann/execplan-skill" data-install="hermes skills install tiann/execplan-skill --force" data-desc="管理复杂长任务的执行。支持生命周期管理、检查点保存和回滚。任务中断后可以从断点继续。" data-usage="<p><strong>适合：</strong>需要几小时甚至几天才能完成的大型任务</p><p><strong>亮点：</strong>断点续传，任务不怕中断</p>">
+        <td><div class="skill-name-cell">execplan-skill <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">多步长任务自动执行 + 生命周期管理 + 检查点</td></tr>
+      <tr data-skill="hermes-dojo" data-source="community" data-repo="https://github.com/Yonkoo11/hermes-dojo" data-install="hermes skills install Yonkoo11/hermes-dojo --force" data-desc="Hermes 自我改进系统。监控自己的表现，发现薄弱环节，迭代优化 Skill。越用越强。" data-usage="<p><strong>效果：</strong>Hermes 会自动改进自己的能力</p><p><strong>适合：</strong>想让 Hermes 持续进化的用户</p>">
+        <td><div class="skill-name-cell">hermes-dojo <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自我改进系统 — 监控表现、迭代 Skill、越用越强</td></tr>
+      <tr data-skill="hermes-skill-marketplace" data-source="community" data-repo="https://github.com/Lethe044/hermes-skill-marketplace" data-install="hermes skills install Lethe044/hermes-skill-marketplace --force" data-desc="让 Hermes 自主编写、测试、发布新 Skill 的 Agent。完全自动化的 Skill 开发流水线。" data-usage="<p><strong>效果：</strong>Hermes 自己写 Skill、自己测、自己发布</p><p><strong>注意：</strong>建议在沙箱环境中使用</p>">
+        <td><div class="skill-name-cell">hermes-skill-marketplace <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自主编写、测试、发布新 Skill 的 Agent</td></tr>
+      <tr data-skill="super-hermes" data-source="community" data-repo="https://github.com/Cranot/super-hermes" data-install="hermes skills install Cranot/super-hermes --force" data-desc="教 Hermes 自己写分析 prompt 的 meta-skill。让 AI 学会更好地分析问题。" data-usage="<p><strong>效果：</strong>Hermes 的分析能力会逐步提升</p>">
+        <td><div class="skill-name-cell">super-hermes <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">教 Hermes 自己写分析 prompt，meta-skill</td></tr>
+      <tr data-skill="self-evolution" data-source="official" data-repo="" data-install="hermes skills install self-evolution" data-desc="用 DSPy 框架实现自我进化。官方出品的进化机制。" data-usage="<p><strong>原理：</strong>基于 DSPy 的 prompt 自动优化</p>">
+        <td><div class="skill-name-cell">self-evolution <span class="click-hint">→</span></div></td><td><span class="tag tag-official">官方</span></td><td class="skill-desc-cell">用 DSPy 实现自我进化</td></tr>
+      <tr data-skill="skillclaw" data-source="community" data-repo="" data-install="hermes skills install skillclaw --force" data-desc="Skill 进化与去重工具。自动合并相似 Skill，淘汰低质量的。" data-usage="<p><strong>适合：</strong>装了很多 Skill 需要清理优化的用户</p>">
+        <td><div class="skill-name-cell">SkillClaw <span class="click-hint">→</span><span class="stars-badge">705 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Skill 进化与去重</td></tr>
+      <tr data-skill="skill-forge" data-source="community" data-repo="https://github.com/armelhbobdad/bmad-module-skill-forge" data-install="hermes skills install armelhbobdad/bmad-module-skill-forge --force" data-desc="把任意 GitHub 仓库或文档自动转成 agentskills.io 格式的 Skill。" data-usage="<p><strong>适合：</strong>想把现有工具包装成 Hermes Skill 的开发者</p>">
+        <td><div class="skill-name-cell">skill-forge <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">把任意仓库自动转成 Skill</td></tr>
+      <tr data-skill="cognify-skills" data-source="community" data-repo="https://github.com/Yarmoluk/cognify-skills" data-install="hermes skills install Yarmoluk/cognify-skills --force" data-desc="19 个商业运营 Skill 套装：CRM 客户管理、发票生成、项目管理、HR 流程等。" data-usage="<p><strong>适合：</strong>小型企业、自由职业者</p><p><strong>包含：</strong>CRM、发票、项目管理、HR 等 19 个模块</p>">
+        <td><div class="skill-name-cell">cognify-skills <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">19 个商业运营 Skill（CRM、发票、项目管理）</td></tr>
+    </table>
+  </div>
+
+  <!-- 创意可视化 -->
+  <div class="category" id="creative">
+    <div class="category-header"><h2>创意与可视化</h2><span class="count">16 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="excalidraw" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="一句话生成手绘风格的图表和示意图。输出 Excalidraw 格式文件。" data-usage="<p><strong>试试说：</strong><code>帮我画一个系统架构图</code></p><p><strong>风格：</strong>手绘/白板风，非正式但清晰</p>">
+        <td><div class="skill-name-cell">excalidraw <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">一句话生成手绘风格图表</td></tr>
+      <tr data-skill="architecture-diagram" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="生成专业的系统架构图。" data-usage="<p><strong>试试说：</strong><code>画一个微服务架构图</code></p>">
+        <td><div class="skill-name-cell">architecture-diagram <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">生成系统架构图</td></tr>
+      <tr data-skill="drawio-skill" data-source="community" data-repo="https://github.com/Agents365-ai/drawio-skill" data-install="hermes skills install Agents365-ai/drawio-skill --force" data-desc="用自然语言生成 draw.io 格式的流程图、UML 图。输出 .drawio 文件可以直接编辑。" data-usage="<p><strong>亮点：</strong>396 ⭐，最受欢迎的图表 Skill</p><p><strong>试试说：</strong><code>画一个用户注册的流程图</code></p><p><strong>输出：</strong>.drawio 文件，可用 draw.io 打开编辑</p>">
+        <td><div class="skill-name-cell">drawio-skill <span class="click-hint">→</span><span class="stars-badge">396 ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自然语言生成 draw.io 流程图/UML 图</td></tr>
+      <tr data-skill="concept-diagrams" data-source="hub" data-repo="" data-install="hermes skills install concept-diagrams" data-desc="生成简洁的 SVG 概念图。适合解释概念和关系。" data-usage="<p><strong>试试说：</strong><code>画一个 MVC 架构的概念图</code></p>">
+        <td><div class="skill-name-cell">concept-diagrams <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">生成简洁 SVG 概念图</td></tr>
+      <tr data-skill="ascii-art" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="生成 ASCII 字符画。" data-usage="<p><strong>试试说：</strong><code>用 ASCII 画一只猫</code></p>">
+        <td><div class="skill-name-cell">ascii-art <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">生成 ASCII 字符画</td></tr>
+      <tr data-skill="ascii-video" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="生成 ASCII 字符动画。在终端里播放的动画效果。" data-usage="<p><strong>试试说：</strong><code>做一个 ASCII 动画</code></p>">
+        <td><div class="skill-name-cell">ascii-video <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">生成 ASCII 字符动画</td></tr>
+      <tr data-skill="manim-video" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="用 Manim 库生成 3Blue1Brown 风格的数学动画。可视化公式推导、几何变换等。" data-usage="<p><strong>使用前提：</strong>需要安装 Manim 库</p><p><strong>试试说：</strong><code>用 Manim 做一个傅里叶变换的动画</code></p><p><strong>输出：</strong>MP4 视频文件</p>">
+        <td><div class="skill-name-cell">manim-video <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">3Blue1Brown 风格数学动画</td></tr>
+      <tr data-skill="p5js" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="p5.js 创意编程，生成互动动画和可视化。输出 HTML 文件在浏览器中运行。" data-usage="<p><strong>试试说：</strong><code>用 p5.js 做一个粒子效果</code></p>">
+        <td><div class="skill-name-cell">p5js <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">p5.js 创意编程/互动动画</td></tr>
+      <tr data-skill="pixel-art" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="生成像素风格的图画。" data-usage="<p><strong>试试说：</strong><code>画一个像素风的小人</code></p>">
+        <td><div class="skill-name-cell">pixel-art <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">生成像素画</td></tr>
+      <tr data-skill="stable-diffusion" data-source="hub" data-repo="" data-install="hermes skills install stable-diffusion" data-desc="通过 Stable Diffusion 文生图。本地或远程生成图片。" data-usage="<p><strong>使用前提：</strong>需要 Stable Diffusion WebUI 或 API</p>">
+        <td><div class="skill-name-cell">stable-diffusion <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">Stable Diffusion 文生图</td></tr>
+      <tr data-skill="flux-skills" data-source="community" data-repo="https://github.com/black-forest-labs/skills" data-install="hermes skills install black-forest-labs/skills --force" data-desc="Black Forest Labs 官方 FLUX 模型 Skill。FLUX 是目前最强的开源文生图模型之一。" data-usage="<p><strong>亮点：</strong>官方出品，FLUX 模型直接调用</p><p><strong>使用前提：</strong>需要 FLUX API 或本地部署</p>">
+        <td><div class="skill-name-cell">flux-skills <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Black Forest Labs 官方 FLUX 模型图片生成</td></tr>
+      <tr data-skill="blender-mcp" data-source="hub" data-repo="" data-install="hermes skills install blender-mcp" data-desc="通过 MCP 协议控制 Blender 3D 建模软件。用自然语言操作 3D 场景。" data-usage="<p><strong>使用前提：</strong>需要安装 Blender + MCP 插件</p><p><strong>试试说：</strong><code>在场景里加一个球体</code></p>">
+        <td><div class="skill-name-cell">blender-mcp <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">通过 Hermes 控制 Blender 3D 建模</td></tr>
+      <tr data-skill="touchdesigner-mcp" data-source="hub" data-repo="" data-install="hermes skills install touchdesigner-mcp" data-desc="控制 TouchDesigner 做互动视觉和实时渲染。" data-usage="<p><strong>适合：</strong>新媒体艺术、互动装置创作者</p>">
+        <td><div class="skill-name-cell">touchdesigner-mcp <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">控制 TouchDesigner 做互动视觉</td></tr>
+      <tr data-skill="songwriting" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="AI 作曲和歌词创作。生成完整的歌词和旋律建议。" data-usage="<p><strong>试试说：</strong><code>帮我写一首关于代码的歌</code></p>">
+        <td><div class="skill-name-cell">songwriting <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">AI 作曲和歌词创作</td></tr>
+      <tr data-skill="ideation" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="创意头脑风暴。用结构化的方法帮你想点子。" data-usage="<p><strong>试试说：</strong><code>帮我想 5 个 AI 产品创意</code></p>">
+        <td><div class="skill-name-cell">ideation <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">创意头脑风暴</td></tr>
+      <tr data-skill="popular-web-designs" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="流行网页设计参考和灵感库。" data-usage="<p><strong>试试说：</strong><code>给我看看最近流行的着陆页设计</code></p>">
+        <td><div class="skill-name-cell">popular-web-designs <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">流行网页设计参考</td></tr>
+    </table>
+  </div>
+
+  <!-- 通讯社交 -->
+  <div class="category" id="communication">
+    <div class="category-header"><h2>通讯与社交</h2><span class="count">9 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="himalaya" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="终端邮件客户端。在命令行里收发邮件，支持 IMAP/SMTP。" data-usage="<p><strong>使用前提：</strong>需要配置邮箱 IMAP/SMTP</p><p><strong>适合：</strong>不想离开终端的开发者</p>">
+        <td><div class="skill-name-cell">himalaya <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">终端邮件客户端，读写邮件</td></tr>
+      <tr data-skill="imessage" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="收发 iMessage。让 Hermes 帮你回消息。" data-usage="<p><strong>使用前提：</strong>macOS + 系统权限授权</p><p><strong>注意：</strong>需要给终端 Full Disk Access 权限</p>">
+        <td><div class="skill-name-cell">imessage <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">收发 iMessage（需 macOS 权限）</td></tr>
+      <tr data-skill="agentmail" data-source="hub" data-repo="" data-install="hermes skills install agentmail" data-desc="给 Agent 一个专属邮箱地址。其他人可以直接给你的 Hermes 发邮件。" data-usage="<p><strong>效果：</strong>Hermes 有自己的邮箱，能自主收发</p>">
+        <td><div class="skill-name-cell">agentmail <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">给 Agent 一个专属邮箱</td></tr>
+      <tr data-skill="telephony" data-source="hub" data-repo="" data-install="hermes skills install telephony" data-desc="让 Hermes 打电话和接电话。语音通话能力。" data-usage="<p><strong>注意：</strong>需要电话 API 服务（如 Twilio）</p>">
+        <td><div class="skill-name-cell">telephony <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">让 Hermes 打电话</td></tr>
+      <tr data-skill="xitter" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="发推特 / X 帖子。" data-usage="<p><strong>使用前提：</strong>需要 X API 认证</p>">
+        <td><div class="skill-name-cell">xitter <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">发推特/X</td></tr>
+      <tr data-skill="xurl" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="抓取和分析 X/Twitter 上的帖子内容。" data-usage="<p><strong>试试说：</strong><code>帮我看看这条推特说了什么</code></p>">
+        <td><div class="skill-name-cell">xurl <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">抓取 X/Twitter 内容</td></tr>
+      <tr data-skill="gif-search" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="搜索 GIF 表情包。" data-usage="<p><strong>试试说：</strong><code>找一个开心的 GIF</code></p>">
+        <td><div class="skill-name-cell">gif-search <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">搜 GIF 表情包</td></tr>
+      <tr data-skill="hermes-spotify" data-source="community" data-repo="https://github.com/Alexeyisme/hermes-spotify-skill" data-install="hermes skills install Alexeyisme/hermes-spotify-skill --force" data-desc="控制 Spotify 播放。切歌、暂停、播放列表管理。支持无头 Linux 和树莓派。" data-usage="<p><strong>使用前提：</strong>需要 Spotify Premium + API</p><p><strong>试试说：</strong><code>播放我的每日推荐</code></p>">
+        <td><div class="skill-name-cell">hermes-spotify <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">控制 Spotify 播放（支持树莓派）</td></tr>
+      <tr data-skill="clawsocial" data-source="community" data-repo="" data-install="hermes skills install clawsocial --force" data-desc="社交发现网络。找到其他 Hermes/OpenClaw 用户。" data-usage="<p><strong>效果：</strong>Agent 社交网络</p>">
+        <td><div class="skill-name-cell">clawsocial <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">社交发现网络</td></tr>
+    </table>
+  </div>
+
+  <!-- 安全红队 -->
+  <div class="category" id="security">
+    <div class="category-header"><h2>安全与红队</h2><span class="count">9 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="godmode" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Hermes 独有的红队测试工具链。开放哲学 — 不限制安全研究能力。" data-usage="<p><strong>注意：</strong>仅用于合法的安全研究和测试</p><p><strong>Hermes 特色：</strong>不像其他 Agent 那样限制安全工具</p>">
+        <td><div class="skill-name-cell">godmode <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">红队测试工具链 — Hermes 独有的开放哲学</td></tr>
+      <tr data-skill="obliteratus" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="模型权重层面的修改工具。高级安全研究用途。" data-usage="<p><strong>注意：</strong>非常高级的工具，需要 ML 背景</p>">
+        <td><div class="skill-name-cell">obliteratus <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">权重层面的模型修改</td></tr>
+      <tr data-skill="cybersecurity-skills" data-source="community" data-repo="https://github.com/mukul975/Anthropic-Cybersecurity-Skills" data-install="hermes skills install mukul975/Anthropic-Cybersecurity-Skills --force" data-desc="754 个网络安全技能集合，完整对标 MITRE ATT&CK 框架。从侦察到渗透到持久化全覆盖。" data-usage="<p><strong>规模：</strong>754 个技能，5600+ ⭐</p><p><strong>适合：</strong>安全研究员、渗透测试人员</p><p><strong>注意：</strong>仅用于授权的安全测试</p>">
+        <td><div class="skill-name-cell">Cybersecurity-Skills <span class="click-hint">→</span><span class="stars-badge">5.6K ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">754 个网安技能，对标 MITRE ATT&CK</td></tr>
+      <tr data-skill="oss-forensics" data-source="hub" data-repo="" data-install="hermes skills install oss-forensics" data-desc="开源软件供应链安全调查和数字取证。" data-usage="<p><strong>适合：</strong>安全团队、供应链安全审计</p>">
+        <td><div class="skill-name-cell">oss-forensics <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">供应链安全调查、证据恢复</td></tr>
+      <tr data-skill="sherlock-security" data-source="hub" data-repo="https://github.com/sherlock-project/sherlock" data-install="hermes skills install sherlock" data-desc="跨 400+ 社交平台搜索用户名。OSINT 侦察经典工具。" data-usage="<p><strong>试试说：</strong><code>查一下 username123 在哪些平台有账号</code></p>">
+        <td><div class="skill-name-cell">sherlock <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">跨 400+ 平台用户名搜索</td></tr>
+      <tr data-skill="security-auditor" data-source="community" data-repo="" data-install="hermes skills install security-auditor --force" data-desc="代码安全审计 + 自动修复建议。扫描代码中的安全漏洞。" data-usage="<p><strong>试试说：</strong><code>帮我审计这个项目的安全问题</code></p><p><strong>我们实测：</strong>能找到真实的安全问题并提出修复方案</p>">
+        <td><div class="skill-name-cell">security-auditor <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">安全审计 + 自动修复</td></tr>
+      <tr data-skill="cso" data-source="community" data-repo="https://github.com/garrytan/gstack" data-install="hermes skills install garrytan/gstack/cso --force" data-desc="OWASP Top 10 和 STRIDE 威胁建模。系统化的安全风险评估。" data-usage="<p><strong>试试说：</strong><code>对这个系统做威胁建模</code></p>">
+        <td><div class="skill-name-cell">cso (gstack) <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">OWASP/STRIDE 威胁建模</td></tr>
+      <tr data-skill="browse" data-source="community" data-repo="https://github.com/garrytan/gstack" data-install="hermes skills install garrytan/gstack/browse --force" data-desc="无头浏览器 QA 测试工具。自动化网页测试。" data-usage="<p><strong>试试说：</strong><code>帮我测试这个网站的功能</code></p>">
+        <td><div class="skill-name-cell">browse (gstack) <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">无头浏览器 QA 测试</td></tr>
+      <tr data-skill="detect-skill" data-source="community" data-repo="" data-install="hermes skills install detect-skill --force" data-desc="Deepfake 检测。支持音频、图片、视频、文字多种媒体格式。" data-usage="<p><strong>试试说：</strong><code>帮我检测这张图是不是 AI 生成的</code></p>">
+        <td><div class="skill-name-cell">detect-skill <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Deepfake 检测（音频/图片/视频/文字）</td></tr>
+    </table>
+  </div>
+
+  <!-- ML / MLOps -->
+  <div class="category" id="mlops">
+    <div class="category-header"><h2>机器学习 / MLOps</h2><span class="count">35 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="huggingface-hub" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="HuggingFace 模型仓库集成。搜索、下载、管理模型。" data-usage="<p><strong>试试说：</strong><code>帮我找一个中文 NLP 模型</code></p>">
+        <td><div class="skill-name-cell">huggingface-hub <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">HuggingFace 模型下载和管理</td></tr>
+      <tr data-skill="llama-cpp" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="在本地用 llama.cpp 运行 GGUF 格式的大语言模型。" data-usage="<p><strong>试试说：</strong><code>帮我跑一个本地模型</code></p>">
+        <td><div class="skill-name-cell">llama-cpp <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">本地跑 GGUF 模型</td></tr>
+      <tr data-skill="unsloth" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="用 Unsloth 高速微调 LLM。比标准方案快 2-5x，显存占用减半。" data-usage="<p><strong>使用前提：</strong>需要 NVIDIA GPU</p>">
+        <td><div class="skill-name-cell">unsloth <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">高速微调 LLM</td></tr>
+      <tr data-skill="axolotl" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Axolotl LLM 微调框架。支持多种微调方法和数据格式。" data-usage="<p><strong>使用前提：</strong>需要 GPU</p>">
+        <td><div class="skill-name-cell">axolotl <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">LLM 微调框架</td></tr>
+      <tr data-skill="dspy" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Stanford DSPy — 声明式 LLM 编程框架。用代码而非 prompt 来编程 LLM。" data-usage="<p><strong>适合：</strong>想系统化管理 prompt 的开发者</p>">
+        <td><div class="skill-name-cell">dspy <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">声明式 LLM 编程框架</td></tr>
+      <tr data-skill="weights-and-biases" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="Weights & Biases 实验追踪和可视化集成。" data-usage="<p><strong>使用前提：</strong>需要 W&B 账号和 API key</p>">
+        <td><div class="skill-name-cell">weights-and-biases <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">实验追踪和可视化</td></tr>
+      <tr data-skill="serving-llms-vllm" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="用 vLLM 部署和提供 LLM 推理服务。高吞吐量推理引擎。" data-usage="<p><strong>使用前提：</strong>需要 GPU 服务器</p>">
+        <td><div class="skill-name-cell">serving-llms-vllm <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">用 vLLM 部署 LLM</td></tr>
+      <tr data-skill="outlines" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="结构化 LLM 输出。确保模型输出严格符合指定的 JSON Schema 或正则表达式。" data-usage="<p><strong>适合：</strong>需要可靠结构化输出的应用</p>">
+        <td><div class="skill-name-cell">outlines <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">结构化 LLM 输出</td></tr>
+      <tr data-skill="whisper" data-source="hub" data-repo="" data-install="hermes skills install whisper" data-desc="OpenAI Whisper 语音识别。把音频/视频转成文字。" data-usage="<p><strong>试试说：</strong><code>把这个音频文件转成文字</code></p>">
+        <td><div class="skill-name-cell">whisper <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">OpenAI 语音识别</td></tr>
+      <tr data-skill="clip" data-source="hub" data-repo="" data-install="hermes skills install clip" data-desc="OpenAI CLIP 视觉-语言模型。图片分类、图文匹配。" data-usage="">
+        <td><div class="skill-name-cell">clip <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">OpenAI 视觉-语言模型</td></tr>
+      <tr data-skill="faiss" data-source="hub" data-repo="" data-install="hermes skills install faiss" data-desc="Facebook FAISS 向量相似度搜索。大规模高效向量检索。" data-usage="">
+        <td><div class="skill-name-cell">faiss <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">向量相似度搜索</td></tr>
+      <tr data-skill="pinecone" data-source="hub" data-repo="" data-install="hermes skills install pinecone" data-desc="Pinecone 托管向量数据库。" data-usage="">
+        <td><div class="skill-name-cell">pinecone <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">向量数据库</td></tr>
+      <tr data-skill="chroma" data-source="hub" data-repo="" data-install="hermes skills install chroma" data-desc="Chroma 嵌入式向量数据库。轻量级，适合本地开发。" data-usage="">
+        <td><div class="skill-name-cell">chroma <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">嵌入式向量数据库</td></tr>
+      <tr data-skill="inference-sh-cli" data-source="hub" data-repo="" data-install="hermes skills install inference-sh-cli" data-desc="150+ AI 应用一键运行。inference.sh 平台的 CLI 集成。" data-usage="">
+        <td><div class="skill-name-cell">inference-sh-cli <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">150+ AI 应用一键运行</td></tr>
+      <tr data-skill="peft-fine-tuning" data-source="hub" data-repo="" data-install="hermes skills install peft-fine-tuning" data-desc="PEFT 参数高效微调。LoRA、QLoRA 等方法。" data-usage="">
+        <td><div class="skill-name-cell">peft-fine-tuning <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">LoRA 等参数高效微调</td></tr>
+      <tr data-skill="modal-serverless-gpu" data-source="hub" data-repo="" data-install="hermes skills install modal-serverless-gpu" data-desc="Modal 无服务器 GPU 云平台集成。按需使用 GPU，不用管服务器。" data-usage="">
+        <td><div class="skill-name-cell">modal-serverless-gpu <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">无服务器 GPU 云平台</td></tr>
+      <tr data-skill="bioinformatics" data-source="hub" data-repo="" data-install="hermes skills install bioinformatics" data-desc="400+ 生物信息学技能集合。" data-usage="">
+        <td><div class="skill-name-cell">bioinformatics <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">400+ 生物信息学技能</td></tr>
+      <tr data-skill="neuroskill-bci" data-source="hub" data-repo="" data-install="hermes skills install neuroskill-bci" data-desc="脑机接口 (BCI) 集成。连接和处理脑电信号。" data-usage="">
+        <td><div class="skill-name-cell">neuroskill-bci <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">脑机接口集成</td></tr>
+      <tr><td colspan="3" class="skill-desc-cell" style="padding-top:8px; font-style:italic;">更多：fine-tuning-with-trl, guidance, gguf-quantization, grpo-rl-training, pytorch-fsdp, pytorch-lightning, segment-anything-model, audiocraft, instructor, llava, qdrant, nemo-curator, distributed-llm-pretraining, huggingface-accelerate/tokenizers, optimizing-attention, tensorrt-llm, lambda-labs-gpu-cloud, drug-discovery, simpo/slime-training, sparse-autoencoder 等</td></tr>
+    </table>
+  </div>
+
+  <!-- 娱乐游戏 -->
+  <div class="category" id="fun">
+    <div class="category-header"><h2>娱乐与游戏</h2><span class="count">10 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="pokemon-player" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="让 AI 玩宝可梦游戏。Hermes 自主操作模拟器打游戏。" data-usage="<p><strong>亮点：</strong>看 AI 打宝可梦，挺解压的</p>">
+        <td><div class="skill-name-cell">pokemon-player <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">让 AI 打宝可梦</td></tr>
+      <tr data-skill="minecraft-modpack" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="一键搭建 Minecraft 模组服务器。自动配置 Forge/Fabric + 模组。" data-usage="<p><strong>试试说：</strong><code>帮我搭一个 Minecraft 服务器</code></p>">
+        <td><div class="skill-name-cell">minecraft-modpack <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">搭建 Minecraft 模组服务器</td></tr>
+      <tr data-skill="hermescraft" data-source="community" data-repo="" data-install="hermes skills install hermescraft --force" data-desc="Minecraft AI 伴侣。带记忆系统，能记住你们一起做的事。" data-usage="<p><strong>效果：</strong>在 Minecraft 里有个 AI 伙伴陪你玩</p>">
+        <td><div class="skill-name-cell">hermescraft <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Minecraft 伴侣 + 记忆系统</td></tr>
+      <tr data-skill="mbti-personality" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="让 Hermes 切换 MBTI 人格。想要一个 INTJ 风格的助手？一句话搞定。" data-usage="<p><strong>试试说：</strong><code>切换到 ENFP 人格</code></p>">
+        <td><div class="skill-name-cell">mbti-personality <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">切换 MBTI 人格</td></tr>
+      <tr data-skill="meme-generation" data-source="hub" data-repo="" data-install="hermes skills install meme-generation" data-desc="选模板自动生成表情包。" data-usage="<p><strong>试试说：</strong><code>帮我做一个 Drake meme</code></p>">
+        <td><div class="skill-name-cell">meme-generation <span class="click-hint">→</span></div></td><td><span class="tag tag-hub">Hub</span></td><td class="skill-desc-cell">选模板自动生成表情包</td></tr>
+      <tr data-skill="songsee" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="听歌识曲。识别正在播放的音乐。" data-usage="<p><strong>试试说：</strong><code>听一下这首歌是什么</code></p>">
+        <td><div class="skill-name-cell">songsee <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">听歌识曲</td></tr>
+      <tr data-skill="heartmula" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="基于你的口味推荐音乐。" data-usage="<p><strong>试试说：</strong><code>推荐一些放松的音乐</code></p>">
+        <td><div class="skill-name-cell">heartmula <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">音乐推荐</td></tr>
+      <tr data-skill="openhue" data-source="builtin" data-repo="" data-install="内置 Skill，无需安装" data-desc="控制飞利浦 Hue 智能灯。调颜色、亮度、场景。" data-usage="<p><strong>使用前提：</strong>需要 Hue Bridge</p><p><strong>试试说：</strong><code>把灯调成暖黄色</code></p>">
+        <td><div class="skill-name-cell">openhue <span class="click-hint">→</span></div></td><td><span class="tag tag-builtin">内置</span></td><td class="skill-desc-cell">控制飞利浦 Hue 智能灯</td></tr>
+      <tr data-skill="hermes-spotify-fun" data-source="community" data-repo="https://github.com/Alexeyisme/hermes-spotify-skill" data-install="hermes skills install Alexeyisme/hermes-spotify-skill --force" data-desc="控制 Spotify 播放。" data-usage="<p><strong>详见：</strong>通讯社交分类中的 hermes-spotify</p>">
+        <td><div class="skill-name-cell">hermes-spotify <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">控制 Spotify</td></tr>
+      <tr data-skill="anihermes" data-source="community" data-repo="" data-install="hermes skills install anihermes --force" data-desc="动漫服务器 + NLP 搜索。查找和推荐动漫。" data-usage="<p><strong>试试说：</strong><code>推荐一些类似进击的巨人的动漫</code></p>">
+        <td><div class="skill-name-cell">anihermes <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">动漫服务器 + NLP 搜索</td></tr>
+    </table>
+  </div>
+
+  <!-- 专业领域 -->
+  <div class="category" id="domain">
+    <div class="category-header"><h2>专业领域</h2><span class="count">8 个 Skill</span></div>
+    <table class="skill-table">
+      <tr data-skill="hermes-legal" data-source="community" data-repo="" data-install="hermes skills install hermes-legal --force" data-desc="合同和法律文件的风险分析。自动标记潜在的法律风险条款。" data-usage="<p><strong>试试说：</strong><code>帮我审一下这份合同</code></p><p><strong>注意：</strong>仅供参考，不能替代律师</p>">
+        <td><div class="skill-name-cell">hermes-legal <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">合同风险分析</td></tr>
+      <tr data-skill="job-scout-agent" data-source="community" data-repo="" data-install="hermes skills install job-scout-agent --force" data-desc="自动搜索和筛选工作机会。根据你的简历和偏好匹配岗位。" data-usage="<p><strong>适合：</strong>留学生找工作（自动投递 + 匹配）</p>">
+        <td><div class="skill-name-cell">job-scout-agent <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自动找工作（留学生刚需）</td></tr>
+      <tr data-skill="startup-architect" data-source="community" data-repo="" data-install="hermes skills install startup-architect --force" data-desc="生成投资人级别的 pitch deck、商业计划书、竞品分析。" data-usage="<p><strong>适合：</strong>创业者、准备融资的团队</p>">
+        <td><div class="skill-name-cell">startup-architect <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">投资人材料生成</td></tr>
+      <tr data-skill="hermes-embodied" data-source="community" data-repo="" data-install="hermes skills install hermes-embodied --force" data-desc="机器人 VLA (Vision-Language-Action) 微调。让机器人通过语言指令执行动作。" data-usage="<p><strong>适合：</strong>机器人研究者</p>">
+        <td><div class="skill-name-cell">hermes-embodied <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">机器人 VLA 微调</td></tr>
+      <tr data-skill="mars-rover" data-source="community" data-repo="" data-install="hermes skills install mars-rover --force" data-desc="ROS2 火星车模拟器。在虚拟环境中操控火星探测器。" data-usage="<p><strong>适合：</strong>航天/机器人爱好者</p>">
+        <td><div class="skill-name-cell">mars-rover <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">ROS2 火星车模拟器</td></tr>
+      <tr data-skill="research-agent" data-source="community" data-repo="" data-install="hermes skills install research-agent --force" data-desc="自主 LLM 研究 Agent。自动搜索论文、整理文献、生成综述。" data-usage="<p><strong>适合：</strong>研究者、学生</p>">
+        <td><div class="skill-name-cell">research-agent <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">自主 LLM 研究</td></tr>
+      <tr data-skill="infra-monitoring" data-source="community" data-repo="" data-install="hermes skills install infra-monitoring --force" data-desc="服务器和基础设施监控。异常时通过 Telegram 推送告警。" data-usage="<p><strong>适合：</strong>运维人员、独立开发者</p>">
+        <td><div class="skill-name-cell">infra-monitoring <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">基础设施监控 + Telegram 推送</td></tr>
+      <tr data-skill="hermes-genesis" data-source="community" data-repo="" data-install="hermes skills install hermes-genesis --force" data-desc="程序化世界引擎。自动生成虚拟世界和环境。" data-usage="<p><strong>适合：</strong>游戏开发者、虚拟环境研究</p>">
+        <td><div class="skill-name-cell">hermes-genesis <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">程序化世界引擎</td></tr>
+    </table>
+  </div>
+
+  <!-- 工作区 GUI -->
+  <div class="category" id="gui">
+    <div class="category-header"><h2>工作区与 GUI</h2><span class="count">8 个工具</span></div>
+    <table class="skill-table">
+      <tr data-skill="hermes-workspace" data-source="community" data-repo="https://github.com/hermes-workspace/hermes-workspace" data-install="详见 GitHub 仓库 README 安装说明" data-desc="功能最全的 Web GUI。聊天界面 + 内嵌终端 + Skill 管理器，不需要用命令行。" data-usage="<p><strong>亮点：</strong>500+ ⭐，最受欢迎的 Hermes GUI</p><p><strong>安装：</strong>详见 GitHub README</p>">
+        <td><div class="skill-name-cell">hermes-workspace <span class="click-hint">→</span><span class="stars-badge">500+ ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Web GUI — 聊天 + 终端 + Skill 管理，不用命令行</td></tr>
+      <tr data-skill="hermes-desktop" data-source="community" data-repo="" data-install="详见 GitHub 仓库下载安装" data-desc="macOS 原生桌面应用。系统菜单栏集成。" data-usage="<p><strong>适合：</strong>不想用终端的 Mac 用户</p>">
+        <td><div class="skill-name-cell">hermes-desktop <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">macOS 原生桌面应用</td></tr>
+      <tr data-skill="hermes-ui" data-source="community" data-repo="" data-install="详见 GitHub 仓库安装说明" data-desc="单文件毛玻璃风格 Web UI。极简美观。" data-usage="<p><strong>亮点：</strong>单文件部署，特别轻量</p>">
+        <td><div class="skill-name-cell">hermes-ui <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">单文件毛玻璃风 Web UI</td></tr>
+      <tr data-skill="hermes-webui" data-source="community" data-repo="" data-install="详见 GitHub 仓库安装说明" data-desc="轻量监控仪表盘。查看 Hermes 运行状态、token 消耗、任务历史。" data-usage="<p><strong>适合：</strong>想监控 Hermes 使用情况的用户</p>">
+        <td><div class="skill-name-cell">hermes-webui <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">轻量监控仪表盘</td></tr>
+      <tr data-skill="portable-hermes" data-source="community" data-repo="" data-install="详见 GitHub 仓库下载" data-desc="Windows 便携版。100+ 工具打包，解压即用，不需要 WSL。" data-usage="<p><strong>适合：</strong>Windows 用户（不需要 WSL）</p>">
+        <td><div class="skill-name-cell">portable-hermes <span class="click-hint">→</span><span class="stars-badge">Win</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Windows 桌面版（100+ 工具打包）</td></tr>
+      <tr data-skill="vessel-browser" data-source="community" data-repo="" data-install="详见 GitHub 仓库安装说明" data-desc="AI 原生 Linux 浏览器。专门为 AI Agent 设计的浏览器环境。" data-usage="<p><strong>适合：</strong>Linux 用户</p>">
+        <td><div class="skill-name-cell">vessel-browser <span class="click-hint">→</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">AI 原生 Linux 浏览器</td></tr>
+      <tr data-skill="mission-control" data-source="community" data-repo="" data-install="详见 GitHub 仓库安装说明" data-desc="Agent 舰队编排平台。同时管理多个 Agent 实例，成本追踪，任务分配。" data-usage="<p><strong>亮点：</strong>3700+ ⭐，最大的 Agent 管理平台</p><p><strong>适合：</strong>需要运行多个 Agent 的团队</p>">
+        <td><div class="skill-name-cell">mission-control <span class="click-hint">→</span><span class="stars-badge">3.7K ⭐</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Agent 舰队编排平台</td></tr>
+      <tr data-skill="agent-analytics" data-source="community" data-repo="https://github.com/Agent-Analytics/agent-analytics-hermes-plugin" data-install="hermes skills install Agent-Analytics/agent-analytics-hermes-plugin --force" data-desc="Signals 分析仪表盘。多项目统计、使用模式分析、成本追踪。" data-usage="<p><strong>效果：</strong>清晰看到每个项目的 token 消耗和使用趋势</p>">
+        <td><div class="skill-name-cell">agent-analytics <span class="click-hint">→</span><span class="new-badge">NEW</span></div></td><td><span class="tag tag-community">社区</span></td><td class="skill-desc-cell">Signals 分析仪表盘，多项目统计</td></tr>
+    </table>
+  </div>
+
+  <!-- Skill 发现平台 -->
+  <div class="category">
+    <div class="category-header"><h2>Skill 注册与发现平台</h2></div>
+    <div class="platform-grid">
+      <div class="platform-item"><h4>agentskills.io</h4><p>Hermes 官方 Skill 标准</p></div>
+      <div class="platform-item"><h4>hermeshub</h4><p>社区 Skill 浏览器 + 安全扫描</p></div>
+      <div class="platform-item"><h4>skilldock.io</h4><p>跨平台 Skill 市场</p></div>
+      <div class="platform-item"><h4>hermesatlas.com</h4><p>Hermes 生态地图 + 排行榜</p></div>
+      <div class="platform-item"><h4>awesome-hermes-agent</h4><p>GitHub 社区资源大全</p></div>
+      <div class="platform-item"><h4>Clarvia</h4><p>18,400+ MCP 服务器索引</p></div>
+      <div class="platform-item"><h4>Global Chat</h4><p>18K+ MCP 服务器发现</p></div>
+    </div>
+  </div>
+
+  <!-- OpenClaw 迁移 -->
+  <div class="callout" style="margin-top: 16px;">
+    <h3>OpenClaw 迁移 Skill（57 个）</h3>
+    <p>通过 <code>hermes claw migrate</code> 从 OpenClaw 迁移。主要是角色扮演型（CEO/CTO/CFO 等）和文本处理型（polish/distill/clarify 等）。功能可用但大多是 prompt 包装，没有真工具调用。</p>
+  </div>
+
+  <!-- 社区忠告 -->
+  <div class="callout callout-warm">
+    <h3>社区忠告</h3>
+    <ol>
+      <li><strong>别装太多</strong> — "先装 1 个记忆 skill + 1 个工具 skill，够了再加"</li>
+      <li><strong>skill-factory 生成的 skill 需要人工审核</strong> — "它总觉得自己做得很好"</li>
+      <li><strong>注意 token 消耗</strong> — Hindsight + 贵模型一天能烧 $50+</li>
+      <li><strong>外部目录的 skill 可能报错</strong> — 关键 skill 放默认目录里更稳</li>
+    </ol>
+  </div>
+
+  <!-- 新手入门 -->
+  <div class="callout callout-green">
+    <h3>新手入门推荐路径</h3>
+    <p style="margin-bottom: 16px;">来自 awesome-hermes-agent 社区建议</p>
+    <p><strong>第一步：装你的第一批 Skill</strong><br>
+    安装 wondelai/skills（380+ ⭐）— 跨平台 Skill 库，兼容 Hermes 和其他 Agent<br>
+    或者 litprog-skill（75+ ⭐）— 文学编程，支持 Claude Code、OpenCode、Hermes</p>
+    <p style="margin-top: 12px;"><strong>第二步：装个 GUI</strong><br>
+    hermes-workspace（500+ ⭐）— 聊天 + 终端 + Skill 管理器，不用命令行<br>
+    mission-control（3.7K ⭐）— Agent 编排仪表盘，舰队管理 + 成本追踪</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 <strong>奇思妙想CYC</strong> 整理 · 2026-04-23<br>
+  资料来源：Hermes Hub · hermesatlas.com · awesome-hermes-agent · Reddit · Substack
+</div>
+
+<script>
+const overlay = document.getElementById('modal-overlay');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalTags = document.getElementById('modal-tags');
+const modalDesc = document.getElementById('modal-desc');
+const modalRepoSection = document.getElementById('modal-repo-section');
+const modalRepoLink = document.getElementById('modal-repo-link');
+const modalRepoText = document.getElementById('modal-repo-text');
+const modalInstall = document.getElementById('modal-install');
+const modalUsage = document.getElementById('modal-usage');
+
+const sourceLabels = {
+  builtin: { text: '内置', class: 'tag-builtin' },
+  hub: { text: 'Hub', class: 'tag-hub' },
+  community: { text: '社区', class: 'tag-community' },
+  official: { text: '官方', class: 'tag-official' },
+  local: { text: '本地', class: 'tag-local' }
+};
+
+document.querySelectorAll('tr[data-skill]').forEach(row => {
+  row.addEventListener('click', () => {
+    const skill = row.dataset.skill;
+    const source = row.dataset.source;
+    const repo = row.dataset.repo;
+    const install = row.dataset.install;
+    const desc = row.dataset.desc;
+    const usage = row.dataset.usage;
+
+    modalTitle.textContent = skill;
+
+    const label = sourceLabels[source] || sourceLabels.community;
+    modalTags.innerHTML = `<span class="tag ${label.class}">${label.text}</span>`;
+
+    modalDesc.textContent = desc;
+
+    if (repo) {
+      modalRepoSection.style.display = 'block';
+      modalRepoLink.href = repo;
+      modalRepoText.textContent = repo.replace('https://github.com/', '');
+    } else {
+      modalRepoSection.style.display = 'none';
+    }
+
+    modalInstall.textContent = install;
+    modalUsage.innerHTML = usage || '<p>暂无详细使用指南</p>';
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function closeModal() {
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function copyInstall(btn) {
+  const code = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '已复制';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '复制';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
