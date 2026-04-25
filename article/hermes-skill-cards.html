@@ -884,8 +884,8 @@ const SKILLS = [
     { name: "openhue", src: "builtin", desc: "控制飞利浦 Hue 智能灯", install: "内置 Skill，无需安装", repo: "", detail: "调颜色、亮度、场景。", usage: "<p><strong>前提：</strong>Hue Bridge</p>" },
   ]},
   { cat: "工作区 GUI", id: "gui", skills: [
-    { name: "mission-control", src: "community", desc: "Agent 舰队编排平台", install: "详见 GitHub README", repo: "", detail: "同时管理多个 Agent 实例。", usage: "", stars: "3.7K ⭐" },
-    { name: "portable-hermes", src: "community", desc: "Windows 桌面版（100+ 工具打包）", install: "详见 GitHub 下载", repo: "", detail: "解压即用，不需要 WSL。", usage: "" },
+    { name: "mission-control", src: "community", desc: "Agent 舰队编排平台 — 多 Agent 调度、成本监控", install: "git clone https://github.com/builderz-labs/mission-control.git && cd mission-control && ./install.sh", repo: "https://github.com/builderz-labs/mission-control", detail: "自托管 AI Agent 编排仪表盘。任务分发、多 Agent 工作流、实时遥测、成本追踪。SQLite + Next.js，零外部依赖。", usage: "<p><strong>前提：</strong>Node.js 22+ / pnpm</p>", stars: "3.7K ⭐" },
+    { name: "portable-hermes", src: "community", desc: "Windows 桌面版（100+ 工具打包）", install: "详见 GitHub 下载", repo: "https://github.com/rookiemann/portable-hermes-agent", detail: "解压即用，不需要 WSL、Docker、管理员权限。内置 LM Studio 本地模型、TTS、ComfyUI。", usage: "<p><strong>亮点：</strong>Windows 用户零门槛上手</p>" },
     { name: "agent-analytics", src: "community", desc: "Signals 分析仪表盘，多项目统计", install: "mkdir -p ~/.hermes/plugins && ln -s $(pwd) ~/.hermes/plugins/agent-analytics", repo: "https://github.com/Agent-Analytics/agent-analytics-hermes-plugin", detail: "Hermes web dashboard 的 Signals 标签页。token 消耗和使用趋势。", usage: "<p><strong>查看：</strong><code>hermes dashboard</code></p>", isNew: true },
   ]},
   { cat: "奇思妙想CYC", id: "cyc", skills: [
