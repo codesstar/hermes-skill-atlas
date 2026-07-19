@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-04-25",
+  "lastUpdated": "2026-07-19",
   "categories": [
     {
       "name": "日常生产力",
@@ -603,6 +603,16 @@
           "detail": "发帖到 X/Twitter。",
           "stars": "",
           "isNew": false
+        },
+        {
+          "name": "hermes-tweet",
+          "source": "community",
+          "description": "搜索推文、读回复、审批后发帖",
+          "install": "hermes plugins install Xquik-dev/hermes-tweet --enable",
+          "repo": "https://github.com/Xquik-dev/hermes-tweet",
+          "detail": "Hermes Agent 原生 X/Twitter 插件。tweet_explore 无需 key，tweet_read 执行认证读取，tweet_action 默认关闭并要求审批。Xquik is an independent third-party service. Not affiliated with X Corp. \"Twitter\" and \"X\" are trademarks of X Corp.",
+          "stars": "18",
+          "isNew": true
         }
       ]
     },
