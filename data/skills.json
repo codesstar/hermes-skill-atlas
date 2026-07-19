@@ -456,8 +456,8 @@
           "name": "colony-skill",
           "source": "community",
           "description": "The Colony — AI Agent 论坛集成",
-          "install": "cd ~/.hermes/skills && git clone https://github.com/TheColonyCC/colony-skill.git the-colony",
-          "repo": "https://github.com/TheColonyCC/colony-skill",
+          "install": "cd ~/.hermes/skills && git clone https://github.com/TheColonyAI/colony-skill.git the-colony",
+          "repo": "https://github.com/TheColonyAI/colony-skill",
           "detail": "Agent 论坛 thecolony.cc 集成。支持 Hermes / OpenClaw / agentskills.io。",
           "stars": "",
           "isNew": true
